@@ -1,0 +1,41 @@
+[
+  {
+    "id": "conn_001",
+    "source_id": "savitribai_phule",
+    "target_id": "qiu_jin",
+    "shared_theme": "suffrage",
+    "connection_type": "cross_both",
+    "connection_explanation": "萨维特里巴伊在 1848 年的印度通过办学突破'女性不可识字'的禁忌，秋瑾在 1904 年的中国通过留学和办报突破'女性不可参政'的禁忌。两人都意识到：女性要进入公共领域，必须同时争夺'知识权'和'话语权'。区别在于，萨维特里巴伊面对的是种姓与性别的双重压迫，她的斗争更偏向基础教育普及；秋瑾面对的是帝制与性别的双重压迫，她的斗争更偏向政治参与。这种差异让我们看见：女性解放的路径因社会结构而异，但'教育 + 发声'的双轨策略跨越了地域与时代。",
+    "evidence_summary": "萨维特里巴伊 1848 年创办印度第一所女子学校并任教；秋瑾 1904 年创办《中国女报》并加入同盟会，两人都将教育与公共发声作为核心斗争手段。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Savitribai-Phule",
+      "https://www.britannica.com/biography/Qiu-Jin"
+    ]
+  },
+  {
+    "id": "conn_002",
+    "source_id": "savitribai_phule",
+    "target_id": "hipatia",
+    "shared_theme": "education",
+    "connection_type": "cross_both",
+    "connection_explanation": "希帕蒂亚在 4 世纪的亚历山大港主持最高学府，萨维特里巴伊在 19 世纪的印度从零开始创办女子学校。两人之间相隔 1400 年，却面对同一个结构性问题：女性作为知识传授者的合法性从未被默认授予。希帕蒂亚因学术地位被当街杀害，萨维特里巴伊因办学被投掷石块——暴力形式不同，根源相同。这种跨越千年的呼应让我们看见：女性进入教育领域的每一步，都是在重写'谁有资格教书'的默认规则。",
+    "evidence_summary": "希帕蒂亚 4 世纪主持亚历山大博物馆学派；萨维特里巴伊 1848 年创办印度第一所女子学校并担任首任教师，两人都以女性身份担任知识传授者并遭受暴力反抗。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Hypatia",
+      "https://www.britannica.com/biography/Savitribai-Phule"
+    ]
+  },
+  {
+    "id": "conn_003",
+    "source_id": "qiu_jin",
+    "target_id": "hipatia",
+    "shared_theme": "education",
+    "connection_type": "cross_both",
+    "connection_explanation": "希帕蒂亚在亚历山大博物馆主持学派、以教学为业；秋瑾回国后主持绍兴大通学堂、以办学为革命据点。两人都把'讲坛/学堂'作为女性进入公共领域的据点，也都因此付出生命代价——希帕蒂亚被暴徒杀害，秋瑾被清廷处决。区别在于，希帕蒂亚的讲堂是既有的精英学术机构，秋瑾的学堂是自建的革命机关。这种差异让我们看见：女性以教育者身份发声，无论是守护既有讲坛还是自建新讲坛，都是对'谁有资格教化他人'这一权力的挑战。",
+    "evidence_summary": "希帕蒂亚主持亚历山大博物馆新柏拉图学派讲学，415 年被杀害；秋瑾主持绍兴大通学堂并以此为反清据点，1907 年就义，两人都以教育者的身份进入公共空间并被当权者或暴徒处死。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Hypatia",
+      "https://www.britannica.com/biography/Qiu-Jin"
+    ]
+  }
+]

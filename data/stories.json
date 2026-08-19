@@ -1,0 +1,65 @@
+[
+  {
+    "id": "savitribai_phule",
+    "name_zh": "萨维特里巴伊·菲勒",
+    "name_en": "Savitribai Phule",
+    "time_period": "1831–1897",
+    "birth_year": 1831,
+    "death_year": 1897,
+    "region_zh": "印度 · 马哈拉施特拉邦",
+    "region_en": "Maharashtra, India",
+    "coordinates": { "lat": 18.52, "lng": 73.86 },
+    "themes": ["education", "suffrage"],
+    "short_story": "在 19 世纪印度，女性识字被视为禁忌，低种姓女孩更是被完全排除在教育之外。萨维特里巴伊·菲勒在 1848 年与丈夫一起创办了印度第一所女子学校，自己成为第一位女教师。她每天步行去学校时会被路人投掷石块和污秽物，但她随身携带两套纱丽，到学校换掉脏衣服继续上课。她一生创办并运营了 18 所学校，同时推动寡妇再婚权、反对杀婴，并在晚年照料瘟疫病人时染病去世。",
+    "why_visible": "她在女性识字率几乎为零的年代创办了 18 所学校，并留下了完整的诗歌与教育著述，是印度现代女性教育的真正起点——但她的名字在国际叙事中远不如同时代的西方女性教育者。",
+    "relevance_today": "今天，当你在为'要不要去读那个看似不切实际的学位'犹豫时，萨维特里巴伊提醒我们：女性接受教育从来都不是默认权利，而是每一代人亲手争取来的。她面对的石块换成了今天更隐蔽的质疑——'女孩子读那么多书有什么用'——但本质没变。她的回答是：继续走，带两套衣服。",
+    "source_urls": [
+      "https://www.britannica.com/biography/Savitribai-Phule",
+      "https://en.wikipedia.org/wiki/Savitribai_Phule"
+    ],
+    "image_url": "/images/savitribai_phule.jpg",
+    "starter_score": 9.0
+  },
+  {
+    "id": "qiu_jin",
+    "name_zh": "秋瑾",
+    "name_en": "Qiu Jin",
+    "time_period": "1875–1907",
+    "birth_year": 1875,
+    "death_year": 1907,
+    "region_zh": "中国 · 浙江绍兴",
+    "region_en": "Shaoxing, Zhejiang, China",
+    "coordinates": { "lat": 30.00, "lng": 120.58 },
+    "themes": ["suffrage", "art_voice", "education"],
+    "short_story": "清末，女性被裹脚、包办婚姻、禁止入学。秋瑾出身官宦之家，却在 1904 年变卖首饰、冲破家庭阻力自费留学日本。她在东京加入光复会和同盟会，创办《中国女报》，公开倡导男女平权、妇女参政。回国后她主持绍兴大通学堂，密谋反清起义。1907 年起义失败，她拒绝逃跑，就义前留下'秋风秋雨愁煞人'七字，年仅 32 岁。",
+    "why_visible": "她是中国近代史上第一个把'女性解放'和'民族革命'并置提出并付诸行动的人，留下的《中国女报》发刊词至今仍是女性主义文本的经典——但主流叙事更多记住她的牺牲，而非她的思想。",
+    "relevance_today": "当你在职场或家庭中被规训'女孩子不要太激进'时，秋瑾的人生是一个极端但清晰的参照：她变卖首饰去留学、她办报、她办学、她就义。她的激进不是姿态，是路径本身。今天的我们不必就义，但她提醒我们：'激进'的定义权从来不在被规训者手里。",
+    "source_urls": [
+      "https://www.britannica.com/biography/Qiu-Jin",
+      "https://en.wikipedia.org/wiki/Qiu_Jin"
+    ],
+    "image_url": "/images/qiu_jin.jpg",
+    "starter_score": 9.1
+  },
+  {
+    "id": "hipatia",
+    "name_zh": "希帕蒂亚",
+    "name_en": "Hypatia of Alexandria",
+    "time_period": "约 355–415",
+    "birth_year": 355,
+    "death_year": 415,
+    "region_zh": "埃及 · 亚历山大港",
+    "region_en": "Alexandria, Egypt",
+    "coordinates": { "lat": 31.20, "lng": 29.92 },
+    "themes": ["science", "education"],
+    "short_story": "公元 4 世纪末的亚历山大港，学术与宗教冲突日益激烈。希帕蒂亚是当时最著名的数学家、天文学家和哲学家，担任亚历山大博物馆新柏拉图学派的主持，吸引了来自地中海各地的学生。她拒绝结婚，终身执教与研究。415 年，在宗教政治斗争中，她被一群暴徒当街杀害，尸体被肢解焚烧。她的死被视为古典学术时代终结的象征之一。",
+    "why_visible": "她是西方历史记载中第一位有明确学术成就留名的女性数学家，也是因学术身份被公开杀害的第一位女性知识分子——她的存在证明，女性参与科学不是现代现象，而是被历史反复抹去的传统。",
+    "relevance_today": "当你是会议室里唯一的女性技术负责人，当你被质疑'女生逻辑思维不行'时，希帕蒂亚在 1600 年前就站在亚历山大博物馆的讲堂里。她的遭遇提醒我们：女性进入科学领域从来不只是能力问题，更是权力问题。她的遗产不是'女性也能做数学'，而是'女性一直在做数学，只是常被从历史中删除'。",
+    "source_urls": [
+      "https://www.britannica.com/biography/Hypatia",
+      "https://en.wikipedia.org/wiki/Hypatia"
+    ],
+    "image_url": "/images/hipatia.jpg",
+    "starter_score": 8.2
+  }
+]

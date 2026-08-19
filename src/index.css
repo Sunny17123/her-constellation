@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 深色主题（默认启用）— 基于 PLAN_v1 §3.1 色彩系统 */
+    --background: 222 47% 5%;        /* #070B14 深空背景 */
+    --foreground: 220 15% 95%;       /* #EDEFF5 主文字 */
+
+    --card: 222 40% 8%;
+    --card-foreground: 220 15% 95%;
+
+    --primary: 43 88% 63%;           /* #F2C14E 暖金光点 */
+    --primary-foreground: 222 47% 5%;
+
+    --secondary: 260 70% 75%;        /* #B79CFF 紫罗兰联结 */
+    --secondary-foreground: 220 15% 95%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 65%; /* #9AA3B2 次文字 */
+
+    --accent: 43 88% 63%;
+    --accent-foreground: 222 47% 5%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 43 88% 63%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  /* 星空呼吸动画 - 用于光点 */
+  @keyframes pulse-star {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(0.95);
+    }
+  }
+  .animate-pulse-star {
+    animation: pulse-star 3s ease-in-out infinite;
+  }
+
+  /* 减少动画偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-pulse-star {
+      animation: none;
+    }
+  }
+}
