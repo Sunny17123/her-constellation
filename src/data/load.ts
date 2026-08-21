@@ -1,59 +1,88 @@
+import { z } from "zod";
 import { Person, PersonSchema, Connection, ConnectionSchema } from "./schema";
 import { THEMES } from "../../data/themes";
 
 /**
  * 数据加载工具
  *
- * 当前实现：从根目录 data/ 读取 JSON
+ * 懒加载：数据经 preloadData() 动态 import（Vite 构建时拆为独立异步 chunk），
+ * 由 DataGate 在挂载应用前完成加载与 zod 校验；同步 getter 供渲染期使用（命中缓存）。
  * 未来适配：一人一档后可改为 import.meta.glob('../data/people/*.json')
  */
 
-// 导入根目录数据（Vite 构建期会打包）
-import storiesJson from "../../data/stories.json";
-import connectionsJson from "../../data/connections.json";
-
-// 缓存解析结果
+// 缓存
 let peopleCache: Person[] | null = null;
 let connectionsCache: Connection[] | null = null;
+let loadPromise: Promise<void> | null = null;
+
+/** 数据校验/加载失败（DataGate 应已拦截此路径，此异常为兜底） */
+export class DataLoadError extends Error {}
 
 /**
- * 获取所有人物（带 zod 校验）
+ * 预加载并校验全部数据（动态 import + zod safeParse）
+ *
+ * - 成功/进行中复用同一 Promise（StrictMode 双挂载安全）
+ * - 失败时重置 loadPromise，使 DataGate 的"重试"可真正重新加载
+ */
+export function preloadData(): Promise<void> {
+  if (peopleCache && connectionsCache) return Promise.resolve();
+  if (loadPromise) return loadPromise;
+
+  loadPromise = (async () => {
+    const [storiesMod, connectionsMod] = await Promise.all([
+      import("../../data/stories.json"),
+      import("../../data/connections.json"),
+    ]);
+
+    const people = z.array(PersonSchema).safeParse(storiesMod.default);
+    if (!people.success) {
+      throw new DataLoadError("人物数据校验失败：" + people.error.message);
+    }
+
+    const connections = z.array(ConnectionSchema).safeParse(
+      connectionsMod.default
+    );
+    if (!connections.success) {
+      throw new DataLoadError("联结数据校验失败：" + connections.error.message);
+    }
+
+    peopleCache = people.data;
+    connectionsCache = connections.data;
+  })().catch((err) => {
+    loadPromise = null;
+    throw err;
+  });
+
+  return loadPromise;
+}
+
+function requireLoaded(): void {
+  if (!peopleCache || !connectionsCache) {
+    throw new DataLoadError("数据尚未加载完成（DataGate 应已拦截此路径）");
+  }
+}
+
+/**
+ * 获取所有人物（带 zod 校验，需先 preloadData）
  */
 export function getAllPeople(): Person[] {
-  if (peopleCache) return peopleCache;
-
-  const result = z.array(PersonSchema).safeParse(storiesJson);
-  if (!result.success) {
-    console.error("人物数据校验失败:", result.error);
-    throw new Error("数据格式错误，请检查 data/stories.json");
-  }
-
-  peopleCache = result.data;
-  return peopleCache;
+  requireLoaded();
+  return peopleCache!;
 }
 
 /**
  * 根据 id 获取人物
  */
 export function getPersonById(id: string): Person | null {
-  const people = getAllPeople();
-  return people.find((p) => p.id === id) ?? null;
+  return getAllPeople().find((p) => p.id === id) ?? null;
 }
 
 /**
- * 获取所有联结（带 zod 校验）
+ * 获取所有联结（带 zod 校验，需先 preloadData）
  */
 export function getAllConnections(): Connection[] {
-  if (connectionsCache) return connectionsCache;
-
-  const result = z.array(ConnectionSchema).safeParse(connectionsJson);
-  if (!result.success) {
-    console.error("联结数据校验失败:", result.error);
-    throw new Error("数据格式错误，请检查 data/connections.json");
-  }
-
-  connectionsCache = result.data;
-  return connectionsCache;
+  requireLoaded();
+  return connectionsCache!;
 }
 
 /**
@@ -73,5 +102,3 @@ export function getThemeColor(themeKey: string): string {
   const theme = THEMES[themeKey as keyof typeof THEMES];
   return theme?.color ?? "#999999";
 }
-
-import { z } from "zod";
