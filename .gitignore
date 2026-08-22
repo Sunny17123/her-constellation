@@ -34,3 +34,4 @@ pnpm-debug.log*
 # Build
 *.tsbuildinfo
 .vite/
+.vercel
