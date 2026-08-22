@@ -18,6 +18,38 @@
       "https://en.wikipedia.org/wiki/Savitribai_Phule"
     ],
     "image_url": "/images/savitribai_phule.jpg",
+    "constellation_code": "NO.001 · LYRA",
+    "quote": {
+      "text": "觉醒吧，起来吧，去受教育——打破枷锁的人，必将获得自由。",
+      "is_own_words": true,
+      "attribution": "—— 诗歌《觉醒》"
+    },
+    "lessons": [
+      {
+        "dir": "关于读书",
+        "parts": [
+          { "blank": "被告知‘女孩子读书没什么用’" },
+          { "text": "时，想想她" },
+          { "blank": "在识字率几乎为零的年代办起了 18 所学校" }
+        ]
+      },
+      {
+        "dir": "关于偏见",
+        "parts": [
+          { "blank": "因为身份或出身被看轻" },
+          { "text": "时，想想她" },
+          { "blank": "带着两套纱丽穿过投掷石块的街道去上课" }
+        ]
+      },
+      {
+        "dir": "关于坚持",
+        "parts": [
+          { "blank": "做了对的事却被嘲笑、想要放弃" },
+          { "text": "时，想想她" },
+          { "blank": "用一生证明：走过去，石块就会变成路" }
+        ]
+      }
+    ],
     "starter_score": 9.0
   },
   {
@@ -39,6 +71,38 @@
       "https://en.wikipedia.org/wiki/Qiu_Jin"
     ],
     "image_url": "/images/qiu_jin.jpg",
+    "constellation_code": "NO.002 · ANTARES",
+    "quote": {
+      "text": "身不得，男儿列；心却比，男儿烈。",
+      "is_own_words": true,
+      "attribution": "—— 《满江红·小住京华》"
+    },
+    "lessons": [
+      {
+        "dir": "关于激进",
+        "parts": [
+          { "blank": "被规训‘女孩子不要太激进’" },
+          { "text": "时，想想她" },
+          { "blank": "变卖首饰去留学、办报、办学、就义" }
+        ]
+      },
+      {
+        "dir": "关于选择",
+        "parts": [
+          { "blank": "在安稳与冒险之间犹豫不决" },
+          { "text": "时，想想她" },
+          { "blank": "冲破包办婚姻，选择了一条不回头的路" }
+        ]
+      },
+      {
+        "dir": "关于发声",
+        "parts": [
+          { "blank": "觉得自己人微言轻、说了也没用" },
+          { "text": "时，想想她" },
+          { "blank": "用《中国女报》让无数沉默的女性第一次开口" }
+        ]
+      }
+    ],
     "starter_score": 9.1
   },
   {
@@ -60,6 +124,38 @@
       "https://en.wikipedia.org/wiki/Hypatia"
     ],
     "image_url": "/images/hipatia.jpg",
+    "constellation_code": "NO.003 · CASSIOPEIA",
+    "quote": {
+      "text": "保留你思考的权利，因为即使错误地思考，也胜过完全不思考。",
+      "is_own_words": true,
+      "attribution": "—— 据传为其讲学语录"
+    },
+    "lessons": [
+      {
+        "dir": "关于求知",
+        "parts": [
+          { "blank": "被质疑‘女生逻辑思维不行’" },
+          { "text": "时，想想她" },
+          { "blank": "1600 年前就站在亚历山大博物馆的讲堂里" }
+        ]
+      },
+      {
+        "dir": "关于偏见",
+        "parts": [
+          { "blank": "是房间里唯一的女性、感到格格不入" },
+          { "text": "时，想想她" },
+          { "blank": "用一生证明女性一直在做数学，只是常被从历史中删除" }
+        ]
+      },
+      {
+        "dir": "关于留下",
+        "parts": [
+          { "blank": "做的事不被看见、觉得毫无意义" },
+          { "text": "时，想想她" },
+          { "blank": "被焚烧的著作仍以缺席的方式改变了后世" }
+        ]
+      }
+    ],
     "starter_score": 8.2
   }
 ]
