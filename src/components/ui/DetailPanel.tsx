@@ -12,6 +12,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
+import ShareButton from "@/components/share/ShareButton";
 
 interface DetailPanelProps {
   onClose: () => void;
@@ -206,14 +207,17 @@ export default function DetailPanel({ onClose }: DetailPanelProps) {
                   <ArrowLeft className="h-4 w-4" />
                   返回地球
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={onClose}
-                  className="h-8 w-8 text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
+                <div className="flex items-center gap-1">
+                  <ShareButton variant="icon" />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={onClose}
+                    className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
 
               <ScrollArea className="flex-1">
@@ -240,6 +244,7 @@ export default function DetailPanel({ onClose }: DetailPanelProps) {
                   <ArrowLeft className="h-4 w-4" />
                   返回
                 </Button>
+                <ShareButton variant="icon" />
               </div>
             </DrawerHeader>
             <ScrollArea className="flex-1 px-6">

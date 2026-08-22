@@ -12,6 +12,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
+import ShareButton from "@/components/share/ShareButton";
 
 interface SummaryCardProps {
   onOpenDetail: () => void;
@@ -45,14 +46,17 @@ export default function SummaryCard({ onOpenDetail }: SummaryCardProps) {
           </h2>
           <p className="text-sm text-muted-foreground">{person.name_en}</p>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={handleClose}
-          className="h-8 w-8 text-muted-foreground hover:text-foreground -mr-2 -mt-1"
-        >
-          <X className="h-4 w-4" />
-        </Button>
+        <div className="flex items-center gap-1">
+          <ShareButton variant="icon" />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleClose}
+            className="h-8 w-8 text-muted-foreground hover:text-foreground -mr-2 -mt-1"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
 
       {/* 时代 + 地域 */}

@@ -12,5 +12,9 @@ const CORS_HEADERS: Record<string, string> = {
 };
 
 export function json(data: unknown, status = 200): Response {
+  // 204 不允许携带 body（Node undici 会直接抛错，CORS 预检 OPTIONS 必经此路径）
+  if (status === 204) {
+    return new Response(null, { status, headers: CORS_HEADERS });
+  }
   return Response.json(data, { status, headers: CORS_HEADERS });
 }
