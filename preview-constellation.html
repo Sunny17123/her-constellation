@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>她的星群 · 2D 星群预览</title>
+<style>
+  :root {
+    --bg: #070B14; --fg: #EDEFF5; --muted: #9AA3B2; --border: rgba(255,255,255,0.1);
+    --gold: #F5A623; --purple: #9B59B6; --blue: #3498DB; --pink: #E74C8B; --green: #2ECC71;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: "Noto Serif SC", "Source Han Serif SC", serif; overflow: hidden; }
+  h1,h2,h3 { font-family: "Noto Serif SC", serif; }
+  .wrap { position: fixed; inset: 0; display: flex; flex-direction: column; }
+
+  /* 顶部栏 */
+  .topbar { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; border-bottom:1px solid var(--border); flex-shrink:0; }
+  .topbar .back { color: var(--muted); cursor: pointer; font-size: 13px; display:flex; align-items:center; gap:6px; }
+  .topbar .back:hover { color: var(--fg); }
+  .topbar h2 { font-size: 16px; }
+  .topbar .count { font-size: 12px; color: var(--muted); }
+
+  /* 控制条 */
+  .ctrlbar { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:8px 12px; border-bottom:1px solid var(--border); background: rgba(10,14,24,0.62); backdrop-filter: blur(14px); flex-shrink:0; }
+  .search { position: relative; width: 208px; max-width: 40%; }
+  .search input { width:100%; border-radius:999px; border:1px solid var(--border); background: rgba(7,11,20,0.6); color: var(--fg); font-size:12px; padding:6px 28px 6px 30px; outline: none; }
+  .search input:focus { border-color: rgba(245,166,35,0.5); }
+  .search .ico { position:absolute; left:9px; top:50%; transform:translateY(-50%); color: var(--muted); font-size:13px; }
+  .search .clr { position:absolute; right:8px; top:50%; transform:translateY(-50%); color: var(--muted); cursor:pointer; font-size:13px; }
+  .search .results { position:absolute; left:0; right:0; top:calc(100% + 6px); max-height:240px; overflow:auto; border:1px solid var(--border); border-radius:10px; background: rgba(7,11,20,0.96); padding:4px 0; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+  .search .results .item { display:flex; justify-content:space-between; padding:6px 12px; font-size:12px; cursor:pointer; }
+  .search .results .item:hover { background: rgba(255,255,255,0.05); }
+  .search .results .item span:last-child { color: var(--muted); font-size:10px; margin-left:8px; }
+
+  .tags { display:flex; flex:1; flex-wrap:wrap; align-items:center; gap:6px; }
+  .tag { display:inline-flex; align-items:center; gap:4px; border-radius:999px; border:1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.03); color: var(--muted); padding:2px 10px; font-size:11px; cursor:pointer; transition: all .18s; }
+  .tag:hover { border-color: rgba(245,166,35,0.5); color: #EDEFF5; background: rgba(245,166,35,0.06); }
+  .tag.on { border-color: rgba(245,166,35,0.85); color: #F5D980; background: rgba(245,166,35,0.14); box-shadow: 0 0 12px rgba(245,166,35,0.22); }
+  .tag .dot { width:6px; height:6px; border-radius:50%; }
+  .dot-field { background: var(--gold); } .dot-region { background: var(--blue); } .dot-century { background: var(--purple); }
+  .sep { width:1px; height:12px; background: var(--border); margin: 0 2px; }
+  .clear { display:inline-flex; align-items:center; gap:4px; border-radius:999px; padding:2px 8px; font-size:11px; color: var(--muted); cursor:pointer; }
+  .clear:hover { color: var(--fg); }
+
+  /* 画布区 */
+  .canvas-area { position: relative; flex:1; overflow: hidden; }
+  canvas { display:block; position:absolute; inset:0; }
+
+  /* 星卡 */
+  .starcard { position:absolute; width:300px; z-index:20; pointer-events:none; }
+  .starcard .inner { position:relative; padding:16px; border-radius:16px; pointer-events:auto;
+    background:
+      radial-gradient(circle at 18% 0%, rgba(245,166,35,0.16) 0%, transparent 55%),
+      radial-gradient(circle at 82% 100%, rgba(155,89,182,0.18) 0%, transparent 55%),
+      rgba(14,19,33,0.92);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 24px rgba(245,166,35,0.08);
+    border:1px solid transparent;
+  }
+  .starcard .inner::before { content:""; position:absolute; inset:0; border-radius:inherit; padding:1px;
+    background: linear-gradient(135deg,#F5A623,#9B59B6,#3498DB);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events:none;
+  }
+  .starcard .name { font-size:18px; font-weight:600; background: linear-gradient(135deg,#F5D980,#F2C14E,#B79CFF); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .starcard .en { font-size:11px; color: var(--muted); margin-top:2px; }
+  .starcard .mag { font-size:9px; color: rgba(154,163,178,0.7); text-transform:uppercase; letter-spacing:1px; }
+  .starcard .magv { font-family: monospace; font-size:12px; color:#F5D980; }
+  .starcard .divider { height:1px; margin:12px 0; background: linear-gradient(90deg, transparent, rgba(245,166,35,0.45) 50%, transparent); }
+  .starcard .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .starcard .chip { display:inline-flex; align-items:center; gap:4px; border-radius:999px; padding:2px 8px; font-size:11px; border:1px solid; }
+  .starcard .row { display:flex; align-items:flex-start; gap:8px; font-size:12px; color: var(--muted); margin-top:8px; }
+  .starcard .row .ic { margin-top:2px; flex-shrink:0; font-size:12px; }
+  .starcard .grav-label { font-size:11px; color: rgba(154,163,178,0.8); text-transform:uppercase; letter-spacing:1px; display:flex; align-items:center; gap:6px; }
+  .starcard .grav-list { font-size:12px; color: rgba(237,239,245,0.85); margin-top:4px; }
+  .starcard .quote { margin-top:12px; display:flex; gap:8px; background: rgba(255,255,255,0.03); padding:10px; border-radius:8px; font-size:11px; font-style:italic; color: rgba(237,239,245,0.8); line-height:1.5; }
+  .starcard .explore { margin-top:12px; width:100%; padding:8px; border-radius:8px; border:1px solid rgba(245,166,35,0.4); background: rgba(245,166,35,0.1); color:#F5D980; font-size:12px; cursor:pointer; }
+  .starcard .explore:hover { background: rgba(245,166,35,0.2); }
+  .starcard .top { display:flex; align-items:flex-start; gap:8px; }
+  .starcard .top .sp { flex:1; min-width:0; }
+  .starcard .top .magbox { flex-shrink:0; text-align:right; }
+  .twinkle { animation: tw 2.4s ease-in-out infinite; }
+  @keyframes tw { 0%,100%{opacity:.35} 50%{opacity:1} }
+
+  /* 图例 */
+  .legend { position:absolute; bottom:12px; left:12px; z-index:20; padding:12px; border-radius:12px; border:1px solid var(--border); background: rgba(10,14,24,0.62); backdrop-filter: blur(14px); }
+  .legend h4 { font-size:10px; color: rgba(154,163,178,0.8); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; font-weight:400; }
+  .legend ul { list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .legend li { display:flex; align-items:center; gap:8px; font-size:11px; color: rgba(237,239,245,0.85); }
+  .legend .line { width:28px; border-top:2px solid; flex-shrink:0; }
+  .legend .hex { margin-left:auto; font-family:monospace; font-size:10px; }
+
+  /* 时间轴 */
+  .timeline { position:absolute; bottom:12px; right:12px; z-index:20; width:min(340px, calc(100% - 360px)); min-width:200px; padding:12px; border-radius:12px; border:1px solid var(--border); background: rgba(10,14,24,0.62); backdrop-filter: blur(14px); }
+  .timeline .head { display:flex; justify-content:space-between; font-size:10px; color: rgba(154,163,178,0.8); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+  .timeline .yv { color: rgba(245,217,128,0.9); }
+  .timeline input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:999px; background: linear-gradient(90deg, rgba(245,166,35,0.5), rgba(155,89,182,0.5)); outline:none; }
+  .timeline input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%; background: radial-gradient(circle at 35% 35%, #FFF6D6, #F2C14E 60%, #B57B0F); box-shadow:0 0 12px rgba(245,166,35,0.6); cursor:pointer; border:none; }
+  .timeline .ends { display:flex; justify-content:space-between; font-size:9px; color: rgba(154,163,178,0.6); margin-top:4px; }
+
+  /* 加载文案 */
+  .intro { position:absolute; inset:0; z-index:30; display:flex; align-items:center; justify-content:center; pointer-events:none;
+    background: radial-gradient(circle at 50% 45%, rgba(7,11,20,0.55), rgba(7,11,20,0.9)); }
+  .intro p { font-size:20px; letter-spacing:0.15em; background: linear-gradient(135deg,#F5D980,#F2C14E,#B79CFF); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation: ib 2.6s ease-in-out infinite; }
+  @keyframes ib { 0%,100%{opacity:.55; letter-spacing:.1em} 50%{opacity:1; letter-spacing:.18em} }
+
+  /* 主题色 chip */
+  .c-education{color:#4ECDC4} .c-suffrage{color:#A8E6CF} .c-body{color:#FF6B9D} .c-labor{color:#F7B32B} .c-science{color:#6C5CE7} .c-art_voice{color:#FD79A8} .c-peace_justice{color:#00B894}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- 顶部栏 -->
+  <div class="topbar">
+    <div class="back" id="back">← 返回地球</div>
+    <h2>她的星群</h2>
+    <div class="count" id="count">0 位 · 0 条呼应</div>
+  </div>
+
+  <!-- 搜索 + 筛选条 -->
+  <div class="ctrlbar">
+    <div class="search">
+      <span class="ico">🔍</span>
+      <input id="searchInput" placeholder="搜索一颗星 · 名字" />
+      <span class="clr" id="searchClr" style="display:none">✕</span>
+      <div class="results" id="searchResults" style="display:none"></div>
+    </div>
+    <div class="tags" id="tags"></div>
+  </div>
+
+  <!-- 画布区 -->
+  <div class="canvas-area" id="canvasArea">
+    <canvas id="cv"></canvas>
+
+    <div class="starcard" id="starcard" style="display:none">
+      <div class="inner">
+        <div class="top">
+          <span class="twinkle" style="color:#F5A623;font-size:16px">✦</span>
+          <div class="sp">
+            <div class="name" id="sc-name"></div>
+            <div class="en" id="sc-en"></div>
+          </div>
+          <div class="magbox">
+            <div class="mag">星等</div>
+            <div class="magv" id="sc-mag"></div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="chips" id="sc-chips"></div>
+        <div class="row"><span class="ic" style="color:#3498DB">◉</span><span id="sc-region"></span></div>
+        <div class="row"><span class="ic" style="color:#9B59B6">◷</span><span id="sc-time"></span></div>
+        <div style="margin-top:10px">
+          <div class="grav-label"><span style="color:#E74C8B">◎</span> 星群引力</div>
+          <div class="grav-list" id="sc-grav"></div>
+        </div>
+        <div class="quote"><span style="color:#F2C14E">“</span><span id="sc-quote"></span></div>
+        <button class="explore" id="sc-explore">探索她的星群 →</button>
+      </div>
+    </div>
+
+    <!-- 图例 -->
+    <div class="legend">
+      <h4>联结光谱</h4>
+      <ul id="legendList"></ul>
+    </div>
+
+    <!-- 时间轴 -->
+    <div class="timeline">
+      <div class="head"><span>时间轴</span><span class="yv" id="yearVal"></span></div>
+      <input type="range" id="yearRange" />
+      <div class="ends"><span id="minYearLbl"></span><span id="maxYearLbl"></span></div>
+    </div>
+
+    <!-- 加载文案 -->
+    <div class="intro" id="intro"><p>她们一直都在，只是没人点亮</p></div>
+  </div>
+</div>
+
+<script>
+/* ===================== 数据 ===================== */
+const THEMES = {
+  education:{zh:"教育权",color:"#4ECDC4"}, suffrage:{zh:"参政与投票",color:"#A8E6CF"},
+  body:{zh:"身体自主",color:"#FF6B9D"}, labor:{zh:"劳动权益",color:"#F7B32B"},
+  science:{zh:"科学参与",color:"#6C5CE7"}, art_voice:{zh:"艺术与发声",color:"#FD79A8"},
+  peace_justice:{zh:"和平与正义",color:"#00B894"},
+};
+const PEOPLE = [
+  { id:"savitribai_phule", name_zh:"萨维特里巴伊·菲勒", name_en:"Savitribai Phule", time_period:"1831–1897", birth_year:1831, region_zh:"印度 · 马哈拉施特拉邦", region_en:"Maharashtra, India", themes:["education","suffrage"], constellation_code:"NO.001 · LYRA", starter_score:9.0, quote:{text:"觉醒吧，起来吧，去受教育——打破枷锁的人，必将获得自由。"} },
+  { id:"qiu_jin", name_zh:"秋瑾", name_en:"Qiu Jin", time_period:"1875–1907", birth_year:1875, region_zh:"中国 · 浙江绍兴", region_en:"Shaoxing, Zhejiang, China", themes:["suffrage","art_voice","education"], constellation_code:"NO.002 · ANTARES", starter_score:9.1, quote:{text:"身不得，男儿列；心却比，男儿烈。"} },
+  { id:"hipatia", name_zh:"希帕蒂亚", name_en:"Hypatia of Alexandria", time_period:"约 355–415", birth_year:355, region_zh:"埃及 · 亚历山大港", region_en:"Alexandria, Egypt", themes:["science","education"], constellation_code:"NO.003 · CASSIOPEIA", starter_score:8.2, quote:{text:"保留你思考的权利，因为即使错误地思考，也胜过完全不思考。"} },
+];
+const CONNECTIONS = [
+  { id:"conn_001", source_id:"savitribai_phule", target_id:"qiu_jin", shared_theme:"suffrage", connection_type:"cross_both" },
+  { id:"conn_002", source_id:"savitribai_phule", target_id:"hipatia", shared_theme:"education", connection_type:"cross_both" },
+  { id:"conn_003", source_id:"qiu_jin", target_id:"hipatia", shared_theme:"education", connection_type:"cross_both" },
+];
+
+/* ===================== 工具 ===================== */
+const clamp01 = v => Math.min(1, Math.max(0, v));
+function hexA(hex, a){ const m=/^#([0-9a-f]{6})$/i.exec(hex); if(!m) return hex; const n=parseInt(m[1],16); return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`; }
+const LINK_STYLES = {
+  legacy:{label:"思想传承",color:"#F5A623",dash:null,width:2.5,glow:false},
+  contemporary:{label:"同时代对话",color:"#9B59B6",dash:[7,5],width:2,glow:false},
+  geographic:{label:"地理跨越",color:"#3498DB",dash:[1,5],width:2,glow:false},
+  thematic:{label:"主题共鸣",color:"#E74C8B",dash:null,width:2.5,glow:true},
+  lineage:{label:"血缘 / 师徒",color:"#2ECC71",dash:null,width:4,glow:false},
+};
+const LEGEND_ORDER=["legacy","contemporary","geographic","thematic","lineage"];
+function computeImportance(p, cnt, maxC){
+  const s=p.starter_score??5;
+  return { impact:s/10, recognition:s/10, breadth: maxC>0?cnt/maxC:0, rarity: 1-s/10,
+    score: 0.35*(s/10)+0.25*(s/10)+0.25*(maxC>0?cnt/maxC:0)+0.15*(1-s/10) };
+}
+const nodeRadius = score => Math.min(32, Math.max(8, 8 + score*16));
+function countryOf(r){ return r.split(",").map(s=>s.trim()).pop()?.toLowerCase()??""; }
+function inferLinkType(c, a, b){
+  if(c.connection_type==="direct_lineage") return "lineage";
+  const sameEra = a.birth_year!=null && b.birth_year!=null && Math.abs(a.birth_year-b.birth_year)<=60;
+  const sameRegion = countryOf(a.region_en)===countryOf(b.region_en);
+  if(sameEra&&sameRegion) return "thematic";
+  if(sameEra&&!sameRegion) return "contemporary";
+  if(!sameEra&&sameRegion) return "legacy";
+  return "geographic";
+}
+function fieldsOf(p){ const s=new Set(); p.themes.forEach(t=>{ if(t==="science")s.add("科学家"); if(t==="art_voice")s.add("艺术家"); if(t==="education"||t==="peace_justice")s.add("思想者"); if(t==="suffrage"||t==="body"||t==="labor")s.add("行动者"); }); return [...s]; }
+function continentOf(p){ const r=p.region_en.toLowerCase(); if(/(china|japan|korea|india|shaoxing|maharashtra|asia)/.test(r)) return "亚洲"; if(/(egypt|alexandria|africa)/.test(r)) return "非洲"; if(/(england|france|germany|europe)/.test(r)) return "欧洲"; if(/(america|usa)/.test(r)) return "美洲"; return "其他"; }
+function centuryOf(p){ if(p.birth_year==null||p.birth_year<=0) return null; return Math.ceil(p.birth_year/100)+"世纪"; }
+function matchesTag(p,t){ if(t.group==="field") return fieldsOf(p).includes(t.value); if(t.group==="region") return continentOf(p)===t.value; if(t.group==="century") return centuryOf(p)===t.value; return false; }
+function matchesFilters(p,tags){ if(tags.length===0) return true; const g={field:[],region:[],century:[]}; tags.forEach(t=>g[t.group].push(t)); for(const k in g){ if(g[k].length && !g[k].some(t=>matchesTag(p,t))) return false; } return true; }
+
+/* ===================== 构建节点 / 连线 ===================== */
+const maxConn = Math.max(1, ...PEOPLE.map(p => CONNECTIONS.filter(c=>c.source_id===p.id||c.target_id===p.id).length));
+const nodes = PEOPLE.map(p=>{
+  const cnt = CONNECTIONS.filter(c=>c.source_id===p.id||c.target_id===p.id).length;
+  const imp = computeImportance(p, cnt, maxConn);
+  return { id:p.id, person:p, importance:imp, radius:nodeRadius(imp.score),
+    color: THEMES[p.themes[0]].color, birthYear:p.birth_year??null, x:0, y:0, vx:0, vy:0 };
+}).sort((a,b)=>b.importance.score-a.importance.score);
+nodes.forEach((n,i)=>n.appearIndex=i);
+const nodeById = new Map(nodes.map(n=>[n.id,n]));
+const links = CONNECTIONS.map(c=>{
+  const s=nodeById.get(c.source_id), t=nodeById.get(c.target_id);
+  if(!s||!t) return null;
+  const vt=inferLinkType(c, s.person, t.person);
+  return { source:s, target:t, conn:c, style:vt, color:LINK_STYLES[vt].color };
+}).filter(Boolean);
+
+/* ===================== 画布 / 尺寸 ===================== */
+const cv = document.getElementById("cv");
+const ctx = cv.getContext("2d");
+const area = document.getElementById("canvasArea");
+let W=0, H=0;
+function resize(){ const r=area.getBoundingClientRect(); W=r.width; H=r.height; cv.width=W*devicePixelRatio; cv.height=H*devicePixelRatio; cv.style.width=W+"px"; cv.style.height=H+"px"; ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); }
+window.addEventListener("resize", resize); resize();
+
+// 初始位置：随机散布在中心附近
+nodes.forEach((n,i)=>{ const a=i/nodes.length*Math.PI*2; n.x=W/2+Math.cos(a)*120; n.y=H/2+Math.sin(a)*120; });
+
+/* ===================== 简易力导向 ===================== */
+function forceStep(){
+  const cx=W/2, cy=H/2;
+  // 斥力
+  for(let i=0;i<nodes.length;i++){ for(let j=i+1;j<nodes.length;j++){
+    const a=nodes[i], b=nodes[j]; let dx=b.x-a.x, dy=b.y-a.y; let d=Math.sqrt(dx*dx+dy*dy)||0.01;
+    const repel = 4000/(d*d); const ux=dx/d, uy=dy/d;
+    a.vx -= ux*repel; a.vy -= uy*repel; b.vx += ux*repel; b.vy += uy*repel;
+  }}
+  // 弹簧（连线）
+  links.forEach(l=>{ const a=l.source, b=l.target; let dx=b.x-a.x, dy=b.y-a.y; let d=Math.sqrt(dx*dx+dy*dy)||0.01;
+    const target=140; const f=(d-target)*0.02; const ux=dx/d, uy=dy/d;
+    a.vx += ux*f; a.vy += uy*f; b.vx -= ux*f; b.vy -= uy*f;
+  });
+  // 向心引力 + 速度衰减 + 碰撞
+  nodes.forEach(n=>{ n.vx += (cx-n.x)*0.0008; n.vy += (cy-n.y)*0.0008; n.vx*=0.82; n.vy*=0.82; n.x+=n.vx; n.y+=n.vy; });
+  // 简单碰撞
+  for(let i=0;i<nodes.length;i++){ for(let j=i+1;j<nodes.length;j++){
+    const a=nodes[i], b=nodes[j]; let dx=b.x-a.x, dy=b.y-a.y; let d=Math.sqrt(dx*dx+dy*dy)||0.01;
+    const minD=a.radius+b.radius+6; if(d<minD){ const ux=dx/d, uy=dy/d; const ov=(minD-d)/2; a.x-=ux*ov; a.y-=uy*ov; b.x+=ux*ov; b.y+=uy*ov; }
+  }}
+}
+let simSteps=0; const MAX_STEPS=400;
+
+/* ===================== 状态 ===================== */
+let hoveredId=null, pinnedId=null, mouse={x:0,y:0}, pinnedPos={x:0,y:0};
+let filters=[], query="", year=2000, showIntro=true, reveal=0;
+const visibleNodeIds=new Set(); const matchedNodeIds=new Set();
+function recomputeSets(){
+  visibleNodeIds.clear(); matchedNodeIds.clear();
+  nodes.forEach(n=>{ if(n.birthYear==null||n.birthYear<=year) visibleNodeIds.add(n.id); if(matchesFilters(n.person,filters)) matchedNodeIds.add(n.id); });
+}
+const focusId = () => pinnedId ?? hoveredId;
+const focusLinkKeys = () => { const s=new Set(); if(!focusId()) return s; links.forEach(l=>{ if(l.source.id===focusId()||l.target.id===focusId()) s.add(l.conn.id); }); return s; };
+
+/* ===================== 加载动画 ===================== */
+let introStart=0;
+function tickIntro(t){
+  if(!introStart) introStart=t;
+  const p=Math.min(1,(t-introStart)/2200); reveal=p;
+  if(p<1){ requestAnimationFrame(tickIntro); }
+  else { setTimeout(()=>{ showIntro=false; document.getElementById("intro").style.display="none"; }, 700); }
+}
+requestAnimationFrame(tickIntro);
+
+/* ===================== 绘制 ===================== */
+function drawNode(n){
+  if(!visibleNodeIds.has(n.id)) return;
+  const total=nodes.length;
+  const appearAt=(n.appearIndex/total)*0.6;
+  let alpha = showIntro ? clamp01((reveal-appearAt)/0.3) : 1;
+  if(alpha<=0) return;
+  const matched=matchedNodeIds.has(n.id);
+  if(filters.length>0 && !matched) alpha*=0.18;
+  const focused = focusId()===n.id;
+  const scale=focused?1.3:1; const r=n.radius*scale;
+  // 光晕
+  const gR=r*3.6; const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,gR);
+  g.addColorStop(0,hexA(n.color,0.55*alpha)); g.addColorStop(0.4,hexA(n.color,0.18*alpha)); g.addColorStop(1,hexA(n.color,0));
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(n.x,n.y,gR,0,Math.PI*2); ctx.fill();
+  // 星环
+  if(n.importance.score>0.55){ ctx.strokeStyle=hexA(n.color,(focused?0.55:0.3)*alpha); ctx.lineWidth=focused?1.5:1; ctx.beginPath(); ctx.arc(n.x,n.y,r*1.7,0,Math.PI*2); ctx.stroke(); }
+  // 实心圆
+  ctx.fillStyle=hexA(n.color,alpha); ctx.beginPath(); ctx.arc(n.x,n.y,r,0,Math.PI*2); ctx.fill();
+  // 中心高光
+  ctx.fillStyle=hexA("#FFFFFF",0.7*alpha); ctx.beginPath(); ctx.arc(n.x-r*0.25,n.y-r*0.25,r*0.32,0,Math.PI*2); ctx.fill();
+  // 名字
+  if(n.importance.score>0.6||focused||hoveredId===n.id){
+    ctx.font="12px 'Noto Serif SC', serif"; ctx.textAlign="center"; ctx.textBaseline="top";
+    ctx.fillStyle=hexA("#EDEFF5",0.92*alpha); ctx.fillText(n.person.name_zh, n.x, n.y+r+4);
+  }
+}
+function drawLink(l){
+  const s=l.source, t=l.target;
+  if(!visibleNodeIds.has(s.id)||!visibleNodeIds.has(t.id)) return;
+  const st=LINK_STYLES[l.style];
+  const total=nodes.length;
+  const sA=((s.appearIndex??0)/total)*0.6, tA=((t.appearIndex??0)/total)*0.6;
+  const linkAppear=Math.max(sA,tA)+0.05;
+  let alpha=showIntro?clamp01((reveal-linkAppear)/0.25):1;
+  if(alpha<=0) return;
+  const dx=t.x-s.x, dy=t.y-s.y; const dist=Math.sqrt(dx*dx+dy*dy);
+  alpha*=clamp01(1-dist/520+0.25);
+  const fId=focusId();
+  if(fId){ const fk=focusLinkKeys(); if(fk.has(l.conn.id)) alpha=Math.max(alpha,0.95); else alpha*=0.15; }
+  if(filters.length>0){ const sM=matchedNodeIds.has(s.id), tM=matchedNodeIds.has(t.id); if(!sM&&!tM) alpha*=0.15; }
+  ctx.strokeStyle=hexA(st.color,alpha); ctx.lineWidth=st.width;
+  ctx.setLineDash(st.dash?st.dash.map(d=>d*1.2):[]);
+  ctx.shadowBlur=st.glow?12:4; ctx.shadowColor=st.color;
+  ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(t.x,t.y); ctx.stroke();
+  ctx.shadowBlur=0; ctx.setLineDash([]);
+}
+function render(){
+  ctx.clearRect(0,0,W,H);
+  if(simSteps<MAX_STEPS){ forceStep(); simSteps++; }
+  links.forEach(drawLink);
+  nodes.forEach(drawNode);
+  requestAnimationFrame(render);
+}
+render();
+
+/* ===================== 星卡 ===================== */
+const starcard=document.getElementById("starcard");
+function showCard(){
+  const id=focusId(); const n=id?nodeById.get(id):null;
+  if(!n){ starcard.style.display="none"; return; }
+  starcard.style.display="block";
+  const p=n.person;
+  document.getElementById("sc-name").textContent=p.name_zh;
+  document.getElementById("sc-en").textContent=p.name_en;
+  document.getElementById("sc-mag").textContent=n.importance.score.toFixed(2);
+  const chips=document.getElementById("sc-chips"); chips.innerHTML="";
+  p.themes.slice(0,3).forEach(t=>{ const th=THEMES[t]; const s=document.createElement("span"); s.className="chip c-"+t; s.textContent=th.zh; s.style.borderColor=th.color+"55"; s.style.background=th.color+"12"; s.style.color=th.color; chips.appendChild(s); });
+  document.getElementById("sc-region").textContent=p.region_zh;
+  document.getElementById("sc-time").innerHTML=p.time_period+(p.constellation_code?` <span style="color:#F5D980cc;margin-left:6px">· ${p.constellation_code}</span>`:"");
+  const nbrs=CONNECTIONS.filter(c=>c.source_id===p.id||c.target_id===p.id).map(c=>{ const oid=c.source_id===p.id?c.target_id:c.source_id; return PEOPLE.find(x=>x.id===oid); }).filter(Boolean);
+  document.getElementById("sc-grav").innerHTML=nbrs.slice(0,4).map((x,i)=>`${i>0?'<span style="color:#9AA3B280;margin:0 6px">·</span>':''}${x.name_zh}`).join("");
+  document.getElementById("sc-quote").textContent=p.quote?.text??"";
+  // 定位
+  const anchor=(pinnedId&&pinnedId===id)?pinnedPos:mouse;
+  const cardW=316, cardH=380; let x=anchor.x+18, y=anchor.y+18;
+  if(x+cardW>W-8) x=anchor.x-cardW-18; if(y+cardH>H-8) y=anchor.y-cardH-18;
+  if(x<8) x=8; if(y<8) y=8;
+  starcard.style.left=x+"px"; starcard.style.top=y+"px";
+}
+document.getElementById("sc-explore").addEventListener("click",()=>{
+  const n=nodeById.get(focusId()); if(n) alert("探索 "+n.person.name_zh+" 的星群（预览：实际项目会跳转详情页）");
+});
+
+/* ===================== 鼠标交互 ===================== */
+function hitNode(mx,my){ for(const n of nodes){ const dx=mx-n.x, dy=my-n.y; if(dx*dx+dy*dy <= (n.radius+4)*(n.radius+4)) return n; } return null; }
+area.addEventListener("mousemove", e=>{
+  const r=area.getBoundingClientRect(); mouse={x:e.clientX-r.left, y:e.clientY-r.top};
+  if(pinnedId){ showCard(); return; }
+  const n=hitNode(mouse.x, mouse.y);
+  const newHover = n?n.id:null;
+  if(newHover!==hoveredId){ hoveredId=newHover; area.style.cursor=hoveredId?"pointer":"default"; }
+  showCard();
+});
+area.addEventListener("click", e=>{
+  const r=area.getBoundingClientRect(); const mx=e.clientX-r.left, my=e.clientY-r.top;
+  const n=hitNode(mx,my);
+  if(n){ if(pinnedId===n.id){ pinnedId=null; } else { pinnedId=n.id; pinnedPos={x:mx,y:my}; } }
+  else { pinnedId=null; }
+  showCard();
+});
+
+/* ===================== 筛选标签 ===================== */
+const tagsEl=document.getElementById("tags");
+function buildTags(){
+  const f=new Set(), r=new Set(), c=new Set();
+  PEOPLE.forEach(p=>{ fieldsOf(p).forEach(x=>f.add(x)); r.add(continentOf(p)); const ce=centuryOf(p); if(ce) c.add(ce); });
+  const mk=(group,val,dot)=>{ const b=document.createElement("button"); b.className="tag"; b.innerHTML=`${dot?`<span class="dot ${dot}"></span>`:""}${val}`; b.onclick=()=>toggle(b,group,val); return b; };
+  const toggle=(el,group,val)=>{
+    const ex=filters.findIndex(t=>t.group===group&&t.value===val);
+    if(ex>=0) filters.splice(ex,1); else filters.push({group,value:val});
+    refreshTags(); recomputeSets();
+  };
+  const all=document.createElement("button"); all.className="tag"; all.textContent="全部"; all.onclick=()=>{ filters=[]; refreshTags(); recomputeSets(); }; tagsEl.appendChild(all);
+  const sep1=document.createElement("span"); sep1.className="sep"; tagsEl.appendChild(sep1);
+  [...f].sort().forEach(v=>tagsEl.appendChild(mk("field",v,"dot-field")));
+  const sep2=document.createElement("span"); sep2.className="sep"; tagsEl.appendChild(sep2);
+  [...r].sort().forEach(v=>tagsEl.appendChild(mk("region",v,"dot-region")));
+  const sep3=document.createElement("span"); sep3.className="sep"; tagsEl.appendChild(sep3);
+  [...c].sort((a,b)=>a.localeCompare(b,"zh",{numeric:true})).forEach(v=>tagsEl.appendChild(mk("century",v,"dot-century")));
+  const clr=document.createElement("button"); clr.className="clear"; clr.innerHTML="↺ 清除"; clr.style.display="none"; clr.onclick=()=>{ filters=[]; refreshTags(); recomputeSets(); }; clr.id="clrBtn"; tagsEl.appendChild(clr);
+}
+function refreshTags(){
+  const btns=tagsEl.querySelectorAll(".tag"); const all=btns[0];
+  all.classList.toggle("on", filters.length===0);
+  btns.forEach((b,i)=>{ if(i===0) return; const g=b.querySelector(".dot")?.className.includes("field")?"field":b.querySelector(".dot")?.className.includes("region")?"region":"century"; const v=b.textContent; const on=filters.some(t=>t.group===g&&t.value===v); b.classList.toggle("on",on); });
+  document.getElementById("clrBtn").style.display=filters.length?"inline-flex":"none";
+}
+buildTags();
+
+/* ===================== 搜索 ===================== */
+const si=document.getElementById("searchInput"), sr=document.getElementById("searchResults"), scl=document.getElementById("searchClr");
+si.addEventListener("input",()=>{ query=si.value.trim().toLowerCase(); scl.style.display=query?"inline":"none"; renderResults(); });
+scl.addEventListener("click",()=>{ si.value=""; query=""; scl.style.display="none"; sr.style.display="none"; });
+function renderResults(){
+  if(!query){ sr.style.display="none"; return; }
+  const res=PEOPLE.filter(p=>p.name_zh.toLowerCase().includes(query)||p.name_en.toLowerCase().includes(query)).slice(0,6);
+  if(res.length===0){ sr.style.display="none"; return; }
+  sr.innerHTML=""; res.forEach(p=>{ const d=document.createElement("div"); d.className="item"; d.innerHTML=`<span>${p.name_zh}</span><span>${p.time_period}</span>`; d.onclick=()=>{ focusOn(p); }; sr.appendChild(d); });
+  sr.style.display="block";
+}
+function focusOn(p){
+  const n=nodeById.get(p.id); if(!n) return;
+  // 把节点拉到中心
+  n.x=W/2; n.y=H/2; n.vx=0; n.vy=0; simSteps=0;
+  pinnedId=p.id; pinnedPos={x:W/2, y:H/2-40};
+  si.value=""; query=""; scl.style.display="none"; sr.style.display="none";
+  showCard();
+}
+
+/* ===================== 图例 ===================== */
+const ll=document.getElementById("legendList");
+LEGEND_ORDER.forEach(t=>{ const s=LINK_STYLES[t]; const li=document.createElement("li");
+  const style=s.dash?(s.dash[0]===1?"dotted":"dashed"):"solid";
+  li.innerHTML=`<span class="line" style="border-color:${s.color};border-top-style:${style};${s.glow?`box-shadow:0 0 6px ${s.color}`:""}"></span><span>${s.label}</span>`;
+  ll.appendChild(li); });
+
+/* ===================== 时间轴 ===================== */
+const years=PEOPLE.map(p=>p.birth_year).filter(y=>y!=null);
+const minYear=Math.floor(Math.min(...years)/50)*50, maxYear=Math.ceil(Math.max(...years)/50)*50;
+year=maxYear;
+const yr=document.getElementById("yearRange"); yr.min=minYear; yr.max=maxYear; yr.step=1; yr.value=year;
+document.getElementById("minYearLbl").textContent=minYear; document.getElementById("maxYearLbl").textContent=maxYear;
+function updYear(){ document.getElementById("yearVal").textContent=year+" 年及以前"; }
+yr.addEventListener("input",()=>{ year=Number(yr.value); updYear(); recomputeSets(); });
+updYear();
+
+/* ===================== 计数 ===================== */
+document.getElementById("count").textContent=`${PEOPLE.length} 位 · ${CONNECTIONS.length} 条呼应`;
+document.getElementById("back").addEventListener("click",()=>alert("预览：实际项目会返回地球视图"));
+
+recomputeSets();
+</script>
+</body>
+</html>

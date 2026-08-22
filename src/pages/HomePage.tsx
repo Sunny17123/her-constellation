@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import GlobeScene from "@/components/globe/GlobeScene";
 import SummaryCard from "@/components/ui/SummaryCard";
 import DetailPanel from "@/components/ui/DetailPanel";
+import StatsDialog from "@/components/ui/StatsDialog";
 
 export default function HomePage() {
   const [showDetail, setShowDetail] = useState(false);
@@ -30,6 +31,9 @@ export default function HomePage() {
 
       {/* 摘要卡（右下角） */}
       <SummaryCard onOpenDetail={handleOpenDetail} />
+
+      {/* 数据统计入口（左下角） */}
+      <StatsDialog />
 
       {/* 详情面板（右侧滑出） */}
       {showDetail && <DetailPanel onClose={handleCloseDetail} />}

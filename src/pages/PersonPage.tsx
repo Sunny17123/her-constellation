@@ -1,8 +1,16 @@
-import { useParams, Link } from "react-router-dom";
-import { getPersonById } from "@/data/load";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import {
+  getPersonById,
+  getConnectionsForPerson,
+  getAllPeople,
+} from "@/data/load";
+import type { Connection, Person } from "@/data/schema";
+import PersonDetailContent from "@/components/ui/PersonDetailContent";
+import { ArrowLeft } from "lucide-react";
 
 export default function PersonPage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const person = id ? getPersonById(id) : null;
 
   if (!person) {
@@ -18,63 +26,42 @@ export default function PersonPage() {
     );
   }
 
+  const echoes = getConnectionsForPerson(person.id);
+  const allPeople = getAllPeople();
+  const getEchoTarget = (
+    connection: Connection,
+    sourceId: string
+  ): Person | null => {
+    const targetId =
+      connection.source_id === sourceId
+        ? connection.target_id
+        : connection.source_id;
+    return allPeople.find((p) => p.id === targetId) ?? null;
+  };
+  const handleEchoClick = (connectionId: string) => {
+    const conn = echoes.find((c) => c.id === connectionId);
+    if (!conn) return;
+    const target = getEchoTarget(conn, person.id);
+    if (target) navigate(`/person/${target.id}`);
+  };
+
   return (
-    <div className="min-h-screen p-6 max-w-3xl mx-auto pt-24">
-      <Link to="/" className="text-primary hover:underline text-sm mb-6 inline-block">
-        ← 返回地球
-      </Link>
-
-      <h1 className="text-4xl font-serif mb-2">{person.name_zh}</h1>
-      <p className="text-muted-foreground mb-6">{person.name_en}</p>
-
-      <div className="space-y-4 text-sm">
-        <div>
-          <span className="text-muted-foreground">时代：</span>
-          <span>{person.time_period}</span>
-        </div>
-        <div>
-          <span className="text-muted-foreground">地域：</span>
-          <span>{person.region_zh}</span>
-        </div>
-        <div>
-          <span className="text-muted-foreground">议题：</span>
-          <span>{person.themes.join("、")}</span>
-        </div>
-      </div>
-
-      <div className="mt-8 prose prose-invert max-w-none">
-        <h2 className="text-xl font-serif mb-3">她的故事</h2>
-        <p className="leading-relaxed whitespace-pre-wrap">{person.short_story}</p>
-      </div>
-
-      <div className="mt-8 p-4 border border-primary/30 rounded-lg bg-primary/5">
-        <h3 className="text-lg font-serif mb-2 text-primary">为什么她值得被看见</h3>
-        <p className="text-sm leading-relaxed">{person.why_visible}</p>
-      </div>
-
-      <div className="mt-6 p-4 border border-secondary/30 rounded-lg bg-secondary/5">
-        <h3 className="text-lg font-serif mb-2 text-secondary-foreground">
-          与今天的你有什么关系
-        </h3>
-        <p className="text-sm leading-relaxed">{person.relevance_today}</p>
-      </div>
-
-      <div className="mt-8">
-        <h3 className="text-lg font-serif mb-3">来源</h3>
-        <ul className="space-y-2 text-sm">
-          {person.source_urls.map((url, i) => (
-            <li key={i}>
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline break-all"
-              >
-                {url}
-              </a>
-            </li>
-          ))}
-        </ul>
+    <div className="min-h-screen pt-24 pb-16 px-6">
+      <div className="max-w-2xl mx-auto">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 text-primary hover:underline text-sm mb-8"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          返回地球
+        </Link>
+        <PersonDetailContent
+          person={person}
+          echoes={echoes}
+          getEchoTarget={getEchoTarget}
+          onEchoClick={handleEchoClick}
+          variant="page"
+        />
       </div>
     </div>
   );
