@@ -4,10 +4,10 @@ import {
   ConnectionSchema,
   type Person,
   type Connection,
-} from "../../src/data/schema.ts";
-import { THEMES } from "../../data/themes.ts";
-import storiesJson from "../../data/stories.json";
-import connectionsJson from "../../data/connections.json";
+} from "../../src/data/schema.js";
+import { THEMES } from "../../data/themes.js";
+import storiesJson from "../../data/stories.json" with { type: "json" };
+import connectionsJson from "../../data/connections.json" with { type: "json" };
 
 /**
  * 服务端数据目录（Vercel Function 运行时装载）

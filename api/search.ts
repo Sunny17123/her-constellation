@@ -4,8 +4,8 @@ import {
   runSearch,
   NotConfiguredError,
   ModelOutputError,
-} from "./lib/search-core.ts";
-import { json } from "./lib/http.ts";
+} from "./lib/search-core.js";
+import { json } from "./lib/http.js";
 
 /**
  * POST /api/search — RAG 检索 endpoint（「我想探索一个主题」）

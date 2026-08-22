@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
-import type { Person, Connection, ThemeKey } from "../../src/data/schema.ts";
-import { THEMES } from "../../data/themes.ts";
-import { loadCatalog, getPersonById, buildCatalogBlock } from "./catalog.ts";
+import type { Person, Connection, ThemeKey } from "../../src/data/schema.js";
+import { THEMES } from "../../data/themes.js";
+import { loadCatalog, getPersonById, buildCatalogBlock } from "./catalog.js";
 
 /**
  * RAG 检索核心（「我想探索一个主题」）

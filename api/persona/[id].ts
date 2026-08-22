@@ -1,6 +1,6 @@
-import { getPersonById } from "../lib/catalog.ts";
-import { buildPersonaPrompt } from "../lib/persona.ts";
-import { json } from "../lib/http.ts";
+import { getPersonById } from "../lib/catalog.js";
+import { buildPersonaPrompt } from "../lib/persona.js";
+import { json } from "../lib/http.js";
 
 /**
  * GET /api/persona/:id — 返回人物的完整 persona prompt

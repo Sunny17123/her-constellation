@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
-import { loadCatalog, getPersonById, buildCatalogBlock } from "./catalog.ts";
-import { GUARDRAILS_BLOCK, GENERAL_SYSTEM } from "./guardrails.ts";
-import { buildPersonaPrompt } from "./persona.ts";
+import { loadCatalog, getPersonById, buildCatalogBlock } from "./catalog.js";
+import { GUARDRAILS_BLOCK, GENERAL_SYSTEM } from "./guardrails.js";
+import { buildPersonaPrompt } from "./persona.js";
 
 /**
  * L2 问答核心

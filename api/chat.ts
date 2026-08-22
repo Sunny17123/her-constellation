@@ -5,8 +5,8 @@ import {
   NotConfiguredError,
   UnknownPersonaError,
   ModelOutputError,
-} from "./lib/chat-core.ts";
-import { json } from "./lib/http.ts";
+} from "./lib/chat-core.js";
+import { json } from "./lib/http.js";
 
 /**
  * POST /api/chat — L2 运行时问答 endpoint
