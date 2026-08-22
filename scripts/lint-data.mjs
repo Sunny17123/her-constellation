@@ -16,7 +16,7 @@
  * 9. 每位女性至少 1 条联结（避免孤岛）
  */
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -34,11 +34,14 @@ const VALID_THEMES = new Set([
 ]);
 
 const VALID_CONNECTION_TYPES = new Set([
+  "same_era",
   "cross_region",
   "cross_era",
   "cross_both",
   "direct_lineage",
 ]);
+
+const VALID_EVIDENCE_TYPES = new Set(["documented", "thematic"]);
 
 const errors = [];
 const warnings = [];
@@ -116,6 +119,15 @@ stories.forEach((s, i) => {
   if (!Array.isArray(s.source_urls) || s.source_urls.length < 2) {
     err(`${tag} source_urls 至少 2 条`);
   }
+
+  if (s.image_url) {
+    if (!s.image_url.startsWith("/")) {
+      err(`${tag} image_url 必须是以 / 开头的站内绝对路径: "${s.image_url}"`);
+    } else {
+      const imagePath = join(root, "public", s.image_url.replace(/^\/+/, ""));
+      if (!existsSync(imagePath)) err(`${tag} image_url 文件不存在: "${s.image_url}"`);
+    }
+  }
 });
 
 // ---------- 校验 connections ----------
@@ -142,6 +154,10 @@ connections.forEach((c, i) => {
 
   if (!VALID_CONNECTION_TYPES.has(c.connection_type)) {
     err(`${tag} 非法 connection_type: "${c.connection_type}"`);
+  }
+
+  if (!VALID_EVIDENCE_TYPES.has(c.evidence_type)) {
+    err(`${tag} 非法 evidence_type: "${c.evidence_type}"`);
   }
 
   // shared_theme 必须 ∈ 双方 themes 交集

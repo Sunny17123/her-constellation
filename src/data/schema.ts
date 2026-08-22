@@ -50,12 +50,17 @@ export type Person = z.infer<typeof PersonSchema>;
 
 // 联结类型
 export const ConnectionTypeSchema = z.enum([
+  "same_era",
   "cross_region",
   "cross_era",
   "cross_both",
   "direct_lineage",
 ]);
 export type ConnectionType = z.infer<typeof ConnectionTypeSchema>;
+
+// 联结证据类型：真实历史关系或策展并置
+export const EvidenceTypeSchema = z.enum(["documented", "thematic"]);
+export type EvidenceType = z.infer<typeof EvidenceTypeSchema>;
 
 // 联结 schema
 export const ConnectionSchema = z.object({
@@ -64,6 +69,7 @@ export const ConnectionSchema = z.object({
   target_id: z.string().min(1),
   shared_theme: ThemeKeySchema,
   connection_type: ConnectionTypeSchema,
+  evidence_type: EvidenceTypeSchema,
   connection_explanation: z.string().min(50, "联结解释至少 50 字"),
   evidence_summary: z.string().min(1),
   evidence_sources: z.array(z.string().url()).min(1),

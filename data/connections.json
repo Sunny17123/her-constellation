@@ -1,41 +1,849 @@
 [
   {
     "id": "conn_001",
-    "source_id": "savitribai_phule",
-    "target_id": "qiu_jin",
-    "shared_theme": "suffrage",
-    "connection_type": "cross_both",
-    "connection_explanation": "萨维特里巴伊在 1848 年的印度通过办学突破'女性不可识字'的禁忌，秋瑾在 1904 年的中国通过留学和办报突破'女性不可参政'的禁忌。两人都意识到：女性要进入公共领域，必须同时争夺'知识权'和'话语权'。区别在于，萨维特里巴伊面对的是种姓与性别的双重压迫，她的斗争更偏向基础教育普及；秋瑾面对的是帝制与性别的双重压迫，她的斗争更偏向政治参与。这种差异让我们看见：女性解放的路径因社会结构而异，但'教育 + 发声'的双轨策略跨越了地域与时代。",
-    "evidence_summary": "萨维特里巴伊 1848 年创办印度第一所女子学校并任教；秋瑾 1904 年创办《中国女报》并加入同盟会，两人都将教育与公共发声作为核心斗争手段。",
+    "source_id": "shen_shanbao",
+    "target_id": "gu_taiqing",
+    "shared_theme": "art_voice",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "沈善宝与顾太清结为金兰姐妹，是秋红吟社共同发起人与核心成员。沈善宝为顾太清的小说《红楼梦影》作序，两人在清末北京的闺秀诗社中以诗唱和、彼此提携，留下确凿的交往记录。她们代表清代女性文学社团中罕见的、由女性自己组织并互相成就的同代同盟。她们的诗社唱和、序跋题签与书信往来构成了清代女性文学社群最完整的同代交往实录。",
+    "evidence_summary": "沈善宝与顾太清结为金兰、同创秋红吟社，沈为顾的小说《红楼梦影》作序并编选其词，诗社唱和与书信往来皆有实录可考，是清代女性文学社群中的同代同盟。",
     "evidence_sources": [
-      "https://www.britannica.com/biography/Savitribai-Phule",
-      "https://www.britannica.com/biography/Qiu-Jin"
+      "https://www.shidianguji.com/",
+      "https://www.zgnt.net/",
+      "https://www.wenhui.whb.cn/"
     ]
   },
   {
     "id": "conn_002",
-    "source_id": "savitribai_phule",
-    "target_id": "hipatia",
-    "shared_theme": "education",
-    "connection_type": "cross_both",
-    "connection_explanation": "希帕蒂亚在 4 世纪的亚历山大港主持最高学府，萨维特里巴伊在 19 世纪的印度从零开始创办女子学校。两人之间相隔 1400 年，却面对同一个结构性问题：女性作为知识传授者的合法性从未被默认授予。希帕蒂亚因学术地位被当街杀害，萨维特里巴伊因办学被投掷石块——暴力形式不同，根源相同。这种跨越千年的呼应让我们看见：女性进入教育领域的每一步，都是在重写'谁有资格教书'的默认规则。",
-    "evidence_summary": "希帕蒂亚 4 世纪主持亚历山大博物馆学派；萨维特里巴伊 1848 年创办印度第一所女子学校并担任首任教师，两人都以女性身份担任知识传授者并遭受暴力反抗。",
+    "source_id": "shen_shanbao",
+    "target_id": "wu_zao",
+    "shared_theme": "art_voice",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "沈善宝与吴藻同为杭州闺秀，互称师友，彼此编选、评点对方的词集。1837年沈善宝北上时吴藻饯行赠词，1850年两人在杭州重逢唱和，书信与词作往来持续数十年。沈的《名媛诗话》收录吴藻，吴为沈作序，是清代两位女词人之间最完整的同代交往记录之一。这为后世留下了清代女词人之间最完整、最可考据的同代交往样貌。",
+    "evidence_summary": "沈善宝与吴藻同出杭州闺秀词坛，互为师友、互相编选评点对方词集，1837年北上饯行与1850年重逢唱和皆有词作书信实录，是两位女词人之间最完整的同代交往记录之一。",
     "evidence_sources": [
-      "https://www.britannica.com/biography/Hypatia",
-      "https://www.britannica.com/biography/Savitribai-Phule"
+      "https://www.shidianguji.com/",
+      "https://www.wenhui.whb.cn/"
     ]
   },
   {
     "id": "conn_003",
     "source_id": "qiu_jin",
-    "target_id": "hipatia",
+    "target_id": "xu_zihua",
+    "shared_theme": "education",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "秋瑾与徐自华1906年在浔溪女学结为金兰，共同创办《中国女报》，徐出资支持秋瑾办学办报。1907年秋瑾就义后，徐自华不顾风险为其收尸、营葬于西湖西泠桥畔，并创办秋社年年祭祀。两人的同盟既是革命战友关系，也以女学教育为共同事业的起点。这段姐妹情谊以墓志、悼词与秋社祭文的形式被完整保存下来。",
+    "evidence_summary": "秋瑾与徐自华1906年结拜金兰、共办《中国女报》，秋殉难后徐不顾风险为其收尸、营葬西湖西泠桥畔并创办秋社年年祭祀，革命战友与姐妹情谊皆见实录。",
+    "evidence_sources": [
+      "https://www.chinanews.com.cn/gn/2018/0331/8578405.shtml",
+      "https://www.chinawriter.com.cn/n1/2019/0606/c404032-31146206.html",
+      "https://zh.wikipedia.org/wiki/秋瑾墓",
+      "https://zh.wikisource.org/wiki/致徐小淑絕命詞"
+    ]
+  },
+  {
+    "id": "conn_004",
+    "source_id": "savitribai_phule",
+    "target_id": "fatima_sheikh",
+    "shared_theme": "education",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "萨维特里巴伊与法蒂玛·谢赫同受师范培训，是印度女性教育的首批教师。1848年她们在浦那创办印度最早的女子学校之一，校址就设在法蒂玛家中；当萨维特里巴伊被婆家逐出后，法蒂玛收留她直到1856年。两人以穆斯林与低种姓女性身份共同打破种姓与性别壁垒，是教科书级的同代同盟。",
+    "evidence_summary": "萨维特里巴伊与法蒂玛·谢赫同受师范培训，1848年在浦那创办印度最早的女子学校之一（校址即设于谢赫家），谢赫在被逐期间收留萨维特里巴伊至1856年，同代办学的友谊有实录可考。",
+    "evidence_sources": [
+      "https://en.wikipedia.org/wiki/Fatima_Sheikh",
+      "https://www.civilsdaily.com/story/faith-in-a-cause-fatima-sheikh/",
+      "https://vajiraoias.com/",
+      "https://www.mainstreamweekly.net/article8908.html"
+    ]
+  },
+  {
+    "id": "conn_005",
+    "source_id": "emmeline_pankhurst",
+    "target_id": "sylvia_pankhurst",
+    "shared_theme": "suffrage",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "埃米琳·潘克赫斯特与西尔维娅是母女，同为英国妇女参政运动领袖。两人早年并肩领导WSPU，后因阶级立场与斗争策略分歧而决裂，1914年西尔维娅被开除出母亲领导的WSPU。这段母女关系集中体现了参政运动中激进派内部关于手段与阶级的深刻分裂。她们的决裂本身，成为后世理解参政运动内部阶级分歧的关键史料。",
+    "evidence_summary": "埃米琳与西尔维娅·潘克赫斯特为母女，同任WSPU领袖并肩领导英国妇女参政运动，后因阶级立场与斗争策略分歧而决裂，1914年西尔维娅被开除出WSPU，母女同盟的聚散是参政运动内部冲突的缩影。",
+    "evidence_sources": [
+      "https://theconversation.com/why-the-pankhurst-sisters-are-still-relevant-today-91086",
+      "https://www.open.edu/openlearn/history-the-arts/sylvia-pankhurst"
+    ]
+  },
+  {
+    "id": "conn_006",
+    "source_id": "harriet_tubman",
+    "target_id": "susan_b_anthony",
+    "shared_theme": "suffrage",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "哈莉特·塔布曼与苏珊·B·安东尼是19世纪末美国妇女参政运动的同代合作者。1896年安东尼在舞台上演说中向观众介绍塔布曼，称其为'朋友的典范'；1903年安东尼在自己的《妇女参政史》上为塔布曼题词，1904年两人同出席全国妇女参政协会会议。她们在废奴与参政两大运动的交汇处并肩活动。",
+    "evidence_summary": "哈莉特·塔布曼与苏珊·B·安东尼同为19世纪末美国废奴与参政运动的合作者，1896年安东尼在演说中介绍塔布曼并题词，1904年两人同出席NAWSA会议，同代交往有史实记录。",
+    "evidence_sources": [
+      "https://www.loc.gov/resource/lccn.loc.gov_16007872",
+      "https://blogs.loc.gov/headlinesandheroes/2022/06/harriet-tubman/"
+    ]
+  },
+  {
+    "id": "conn_007",
+    "source_id": "susan_b_anthony",
+    "target_id": "elizabeth_cady_stanton",
+    "shared_theme": "suffrage",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "苏珊·B·安东尼与伊丽莎白·凯迪·斯坦顿是长达半个世纪（1851-1902）的妇女参政伙伴。两人1868年合办《革命》周报、1869年共组全国妇女参政协会，并合著四卷本《妇女参政史》。斯坦顿负责理论，安东尼负责组织与巡回演讲，是历史上最著名的女性政治同盟之一。",
+    "evidence_summary": "苏珊·B·安东尼与伊丽莎白·凯迪·斯坦顿是长达半个世纪的参政伙伴，1868年合办《革命》周报、1869年共组全国妇女参政协会、合编四卷本《妇女参政史》，一主理论一主组织，为史上最著名女性政治同盟之一。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Elizabeth-Cady-Stanton",
+      "https://www.ebsco.com/research-starters/history/susan-b-anthony"
+    ]
+  },
+  {
+    "id": "conn_008",
+    "source_id": "rosa_parks",
+    "target_id": "jo_ann_robinson",
+    "shared_theme": "peace_justice",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "罗莎·帕克斯与乔·安·罗宾逊是蒙哥马利公交抵制运动的直接合作者。罗宾逊作为妇女政治委员会（WPC）主席早在1954年就提出抵制设想并起草传单，1955年12月帕克斯被捕后，罗宾逊连夜印刷传单组织动员，并参与蒙哥马利改进协会的车辆协调与通讯工作。两人共同把一次逮捕转化为持续381天的运动。",
+    "evidence_summary": "罗莎·帕克斯与乔·安·罗宾逊是蒙哥马利公交抵制运动的直接合作者：罗宾逊起草传单组织动员并协调车队，帕克斯的逮捕经其动员转化为持续381天的抵制，两人共同成就了民权史上的转折点。",
+    "evidence_sources": [
+      "https://www.nps.gov/mamc/index.htm",
+      "https://www.splcenter.org/hatewatch/2015/12/01/jo-ann-robinson-black-woman-who-stood-behind-montgomery-bus-boycott",
+      "https://kinginstitute.stanford.edu/encyclopedia/robinson-jo-ann"
+    ]
+  },
+  {
+    "id": "conn_009",
+    "source_id": "oodgeroo_noonuccal",
+    "target_id": "faith_bandler",
+    "shared_theme": "peace_justice",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "奥德杰鲁·努努卡尔与费丝·班德勒是FCAATSI（联邦原住民进步委员会）的同志。两人同为原住民权利运动核心成员，曾结伴在凯恩斯遭遇旅馆拒绝入住，1965年共同参加堪培拉的宪法权利抗议。努努卡尔以诗人之名发声，班德勒以组织与游说推动，是澳大利亚原住民权利运动中的同代同盟。",
+    "evidence_summary": "奥德杰鲁·努努卡尔与费丝·班德勒同任FCAATSI成员，结伴赴凯恩斯时遭遇旅馆拒绝入住，1965年共同参加堪培拉宪法权利抗议，分别以诗歌与组织推动澳大利亚原住民权利，同代同盟有实录。",
+    "evidence_sources": [
+      "https://www.smh.com.au/national/faith-bandler-20070413-gdpcu1.html",
+      "https://aiatsis.gov.au/explore/faith-bandler"
+    ]
+  },
+  {
+    "id": "conn_010",
+    "source_id": "mary_wollstonecraft",
+    "target_id": "mary_shelley",
+    "shared_theme": "art_voice",
+    "connection_type": "same_era",
+    "evidence_type": "documented",
+    "connection_explanation": "玛丽·沃斯通克拉夫特与玛丽·雪莱是母女，是英国女性思想史与文学史上最著名的母女传承。沃斯通克拉夫特在生下女儿11天后死于产褥热，雪莱一生以母亲著作为精神参照：她常在母亲墓前读书，其《六周旅行记》承袭母亲《瑞典书简》的文体，《弗兰肯斯坦》与《女权辩护》构成深度互文。血缘之外，是文本与思想的双重传承。",
+    "evidence_summary": "玛丽·沃斯通克拉夫特与玛丽·雪莱为母女，前者生下女儿11天后死于产褥热，雪莱一生以母亲著作为精神参照、常在墓前读书，其《六周旅行记》与《弗兰肯斯坦》承袭并互文母亲作品，血缘与文本双重传承。",
+    "evidence_sources": [
+      "https://plato.stanford.edu/entries/wollstonecraft/",
+      "https://catalog.libraries.psu.edu/catalog/3939619",
+      "https://www.britishlibrary.cn/en/authors/mary-shelley/"
+    ]
+  },
+  {
+    "id": "conn_011",
+    "source_id": "virginia_woolf",
+    "target_id": "mary_wollstonecraft",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_era",
+    "evidence_type": "documented",
+    "connection_explanation": "弗吉尼亚·伍尔夫与玛丽·沃斯通克拉夫特之间是确凿的文本—思想继承关系。伍尔夫在《普通读者》第二辑中撰写专文《玛丽·沃斯通克拉夫特》，并在《一间自己的房间》中明确把沃斯通克拉夫特视为女性写作谱系的源头。虽然两人相隔约一个半世纪、无个人交往，但伍尔夫对沃斯通克拉夫特的研究与接受是文献可考的真实历史关系。",
+    "evidence_summary": "弗吉尼亚·伍尔夫在《普通读者》撰写专文评述玛丽·沃斯通克拉夫特，并在《一间自己的房间》中视其为女性写作谱系的源头；虽相隔约一个半世纪、无个人交往，但此文本—思想继承关系文献可考。",
+    "evidence_sources": [
+      "https://plato.stanford.edu/entries/wollstonecraft/",
+      "https://www.taylorfrancis.com/"
+    ]
+  },
+  {
+    "id": "conn_012",
+    "source_id": "wu_zao",
+    "target_id": "gu_taiqing",
+    "shared_theme": "art_voice",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "吴藻与顾太清并称清代两大女词人，是清代闺秀词坛的双峰。吴藻以大胆奔放、突破闺阁题材著称，顾太清以《东海渔歌》名世并兼擅小说，两人虽未确证直接交往，却同处清代女词人从闺阁消遣走向自觉创作的转折点，是策展中并置对照清代女性词学的理想组合。她们的作品构成清代女性诗词在题材与美学上的两极坐标，并置可完整呈现闺秀词的深度与广度。",
+    "evidence_summary": "吴藻与顾太清同为清代女词人双峰，分别代表豪放与典雅两极，并置可见闺秀词从闺阁消遣走向自觉创作的完整宽度。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Wu-Zao",
+      "https://www.britannica.com/biography/Gu-Taiqing"
+    ]
+  },
+  {
+    "id": "conn_013",
+    "source_id": "gu_taiqing",
+    "target_id": "qiu_jin",
+    "shared_theme": "art_voice",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "顾太清是满族宗室内闱中的诗人，秋瑾是反清革命者，二人同在清代以女性之身写诗立言，却走上截然不同的道路。顾以贵族内眷身份在诗社中求得创作空间，秋瑾则跳出闺门投身革命。将两人并置，恰好呈现清代女性写作内部'体制内求存'与'体制外反叛'的两种生存策略。",
+    "evidence_summary": "顾太清以贵族内眷身份在诗社中求得创作空间，秋瑾则跳出闺门投身革命，同为清代女诗人而路径截然相反，并置呈现女性写作的两种生存策略。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Gu-Taiqing",
+      "https://www.chinawriter.com.cn/n1/2019/0606/c404032-31146206.html"
+    ]
+  },
+  {
+    "id": "conn_014",
+    "source_id": "shen_shanbao",
+    "target_id": "qiu_jin",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "沈善宝与秋瑾代表中国女性写作从闺阁到政治的两代转型。沈以《名媛诗话》为约五百位女诗人存诗立传，在诗社与选集中为女性文学生产建立秩序；秋瑾则把写作直接投入反清革命与妇女解放，以诗为檄文。两人的并置展现了清代到清末女性从'存诗'到'用诗'的深层转变。",
+    "evidence_summary": "沈善宝以《名媛诗话》为数百位女诗人存诗立传，秋瑾则以诗为革命檄文，并置展现清代到清末女性从‘存诗’到‘用诗’的深层转变。",
+    "evidence_sources": [
+      "https://www.shidianguji.com/",
+      "https://zh.wikisource.org/wiki/致徐小淑絕命詞"
+    ]
+  },
+  {
+    "id": "conn_015",
+    "source_id": "xu_zihua",
+    "target_id": "shen_shanbao",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "徐自华与沈善宝都是浙江女性文学与女性社群的保存者。沈以《名媛诗话》为清代女诗人存诗，徐则以秋社、整理秋瑾遗稿和《听竹楼诗稿》保存晚清革命女性的文字。二人相隔一代，却都以'为女性文字立碑'为志业，是浙江女性文本保存传统的上下两端。她们各自以选本与结社，为身后几百年的女性文学史留下了可以追溯的文本依据。",
+    "evidence_summary": "徐自华与沈善宝同为浙江女性，分别以秋社与《名媛诗话》保存女性文字，是浙江女性文本保存传统的上下两代。",
+    "evidence_sources": [
+      "https://www.shidianguji.com/",
+      "https://www.chinawriter.com.cn/n1/2019/0606/c404032-31146206.html"
+    ]
+  },
+  {
+    "id": "conn_016",
+    "source_id": "he_yin_zhen",
+    "target_id": "hiratsuka_raicho",
+    "shared_theme": "suffrage",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "何殷震与平塚雷鸟是东亚女性主义自觉的两位开端者。何1907年在东京创办《天义报》，以无政府主义视角系统批判性别与阶级压迫；平塚1911年创办《青鞜》，以创刊词'元始，女性是太阳'宣告女性自我觉醒。两人几乎同时在不同语言里为东亚女性主义奠基，是跨文明策展的天然对照。",
+    "evidence_summary": "何殷震1907年在东京办《天义报》批判性别与阶级压迫，平塚雷鸟1911年以《青鞜》创刊词宣告女性觉醒，两人几乎同时为东亚女性主义奠基。",
+    "evidence_sources": [
+      "https://www.ndl.go.jp/portrait/e/datas/380/",
+      "https://www.pen-online.com/culture/seito-the-first-japanese-feminist-magazine/"
+    ]
+  },
+  {
+    "id": "conn_017",
+    "source_id": "he_yin_zhen",
+    "target_id": "simone_de_beauvoir",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "何殷震在《天义报》上提出性别是历史文化建构、女性应为独立主体，比波伏瓦《第二性》早半个世纪；波伏瓦则以系统的哲学论证完成同一命题。两人都以写作作为批判性别本质主义的武器，相隔半个世纪、两个文明，却指向相同的理论结构，是'性别是建构的'这一命题的跨世纪回响。",
+    "evidence_summary": "何殷震1907年在《天义报》提出性别是历史文化建构，比波伏瓦《第二性》早约半个世纪，两人以写作批判性别本质主义，是同一命题的跨世纪回响。",
+    "evidence_sources": [
+      "https://www.plato.stanford.edu/entries/wollstonecraft/",
+      "https://www.cup.columbia.edu/book/in-the-beginning-woman-was-the-sun/9780231138123/"
+    ]
+  },
+  {
+    "id": "conn_018",
+    "source_id": "wang_zhenyi",
+    "target_id": "wu_jianxiong",
+    "shared_theme": "science",
+    "connection_type": "cross_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "王贞仪与吴健雄是中国女性科学家的跨世纪接力。王贞仪18世纪在闺中自学天文、数学，写下《月食解》并以通俗文字普及科学；吴健雄20世纪以宇称不守恒实验震惊物理学界。两人都出身中国、都须在男权与保守环境中以超常实力开辟道路，是'中国女性进入科学'的两座里程碑。",
+    "evidence_summary": "王贞仪18世纪在闺中自学天文数学并著《月食解》，吴健雄20世纪以实验证明宇称不守恒，两人同为冲破中国性别环境的女性科学家，是跨世纪接力。",
+    "evidence_sources": [
+      "https://en.wikipedia.org/wiki/Wang_Zhenyi_(astronomer)",
+      "https://www.britannica.com/biography/Chien-Shiung-Wu"
+    ]
+  },
+  {
+    "id": "conn_019",
+    "source_id": "wang_zhenyi",
+    "target_id": "ada_lovelace",
+    "shared_theme": "science",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "王贞仪与艾达·洛夫莱斯是女性数学与科学先驱的跨文化对照。王贞仪18世纪中国以诗文记录天文数学研究并自绘月食图，艾达19世纪英国为分析机写下第一份算法注记。两人都在没有正规教育机会的条件下靠自学进入数学，以'想象力+精确性'越过了当时女性知识的边界。",
+    "evidence_summary": "王贞仪18世纪在清代闺中自修天文数学，艾达·洛夫莱斯19世纪在英国为分析机写下首份算法注记，两人都在无正规教育条件下自学成才。",
+    "evidence_sources": [
+      "https://en.wikipedia.org/wiki/Wang_Zhenyi_(astronomer)",
+      "https://cacm.acm.org/blogcacm/was-ada-lovelace-actually-the-first-programmer/"
+    ]
+  },
+  {
+    "id": "conn_020",
+    "source_id": "gu_taiqing",
+    "target_id": "artemisia_gentileschi",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "顾太清与阿特米希娅·简特内斯基是女性进入男性主导艺术文类的跨文化并置。阿特米希娅17世纪意大利以历史画打破画坛禁忌、成为佛罗伦萨学院首位女院士；顾太清19世纪中国以《红楼梦影》成为第一位续写男性名著的女作家。两人都以'闯入男性文类'确立自己的创作位置，见证女性艺术主体性的可能。",
+    "evidence_summary": "阿特米希娅17世纪以历史画成为佛罗伦萨学院首位女院士，顾太清19世纪成为首位续写《红楼梦》的女作家，两人都以闯入男性文类确立创作位置。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Artemisia-Gentileschi",
+      "https://www.britannica.com/biography/Gu-Taiqing"
+    ]
+  },
+  {
+    "id": "conn_021",
+    "source_id": "wu_jianxiong",
+    "target_id": "lise_meitner",
+    "shared_theme": "science",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "吴健雄与莉泽·迈特纳是两位以实验/理论远见著称却未获诺贝尔奖的女物理学家。吴的实验直接验证了杨振宁、李政道的弱作用宇称不守恒假说，迈特纳则共同发现核裂变，两人皆因性别与时代原因与诺奖擦肩。并置可见20世纪女性物理学家'做出诺奖级工作却被排斥在颁奖台之外'的共同命运。",
+    "evidence_summary": "吴健雄以实验验证宇称不守恒，莉泽·迈特纳共同发现核裂变，两人皆做出诺奖级工作却因性别与时代与诺奖擦肩，是20世纪女性物理学的共同命运。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Chien-Shiung-Wu",
+      "https://www.britannica.com/biography/Lise-Meitner"
+    ]
+  },
+  {
+    "id": "conn_022",
+    "source_id": "wu_jianxiong",
+    "target_id": "katherine_johnson",
+    "shared_theme": "science",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "吴健雄与凯瑟琳·约翰逊都曾在男性主导的科学与工程领域以过人精确性作出关键贡献，并因性别与族裔被长期低估。吴以实验物理证明宇称不守恒，约翰逊以轨道计算护送美国宇航员入太空，两人皆在晚年才获得公开追认，是'被看见的迟到'在科学与工程两端的写照。",
+    "evidence_summary": "吴健雄以实验物理证明宇称不守恒，凯瑟琳·约翰逊以轨道计算护送宇航员入太空，两人皆因性别族裔长期被低估、晚年才获公开追认。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Chien-Shiung-Wu",
+      "https://www.nasa.gov/content/katherine-johnson-biography/"
+    ]
+  },
+  {
+    "id": "conn_023",
+    "source_id": "lise_meitner",
+    "target_id": "katherine_johnson",
+    "shared_theme": "science",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "莉泽·迈特纳与凯瑟琳·约翰逊是20世纪科学史上'贡献被迟延承认'的两位女性。迈特纳共同发现核裂变却未获诺奖，其同事哈恩独得殊荣；约翰逊的计算是阿波罗任务的前提，却到2016年才因电影获公众所知。两人以不同方式证明：女性的科学功绩常在男性叙述中被抹去，又在更晚的时刻被重新看见。",
+    "evidence_summary": "迈特纳共同发现核裂变却由同事独得诺奖，约翰逊的计算是阿波罗任务前提却到2016年才获公众所知，女性科学功绩常被抹去又在更晚被看见。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Lise-Meitner",
+      "https://www.nasa.gov/content/katherine-johnson-biography/"
+    ]
+  },
+  {
+    "id": "conn_024",
+    "source_id": "lise_meitner",
+    "target_id": "nise_da_silveira",
+    "shared_theme": "science",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "莉泽·迈特纳与妮丝·达·西尔韦拉都是男性主导专业领域里'另类'的女性科学家。迈特纳在纳粹与学术父权的双重排挤下完成核裂变的理论解释；西尔韦拉在精神病学主流用休克疗法时坚持以艺术与对话治疗精神分裂患者。两人都以不合主流的路径证明：科学的进步需要不被体制驯服的头脑。",
+    "evidence_summary": "迈特纳在纳粹与父权排挤中完成核裂变的理论解释，西尔韦拉以艺术与对话治疗精神分裂患者对抗主流休克疗法，两人都以不合主流的路径推进科学。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Lise-Meitner",
+      "https://en.wikipedia.org/wiki/Nise_da_Silveira"
+    ]
+  },
+  {
+    "id": "conn_025",
+    "source_id": "savitribai_phule",
+    "target_id": "pandita_ramabai",
+    "shared_theme": "education",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "萨维特里巴伊·普勒与潘迪塔·拉玛巴伊同为马哈拉施特拉女性教育的先驱。萨维特里巴伊1848年创办印度最早的女子学校，拉玛巴伊创办Sharada Sadan与Mukti Mission收容寡妇并倡女性教育；史料记载拉玛巴伊视普勒夫妇为同盟。两人都直面童婚、寡妇受虐与种姓压迫，以教育作为女性自立的根基。",
+    "evidence_summary": "萨维特里巴伊1848年创办印度最早的女子学校，拉玛巴伊创办Sharada Sadan与Mukti Mission收容寡妇，两人都直面童婚与种姓压迫，以教育为女性自立之基。",
+    "evidence_sources": [
+      "https://www.newsclick.in/How-Can-India-Reinvigorate-Phule-Revolutionary-Legacy",
+      "https://en.wikipedia.org/wiki/Pandita_Ramabai"
+    ]
+  },
+  {
+    "id": "conn_026",
+    "source_id": "savitribai_phule",
+    "target_id": "begum_rokeya",
+    "shared_theme": "education",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "萨维特里巴伊·普勒与贝古姆·罗克亚是南亚女性教育先驱的跨地域并置。萨维特里巴伊1848年在浦那创办女童学校、反抗种姓与性别双重压迫；罗克亚1909/1911年在孟加拉以'承诺校内深闺'的方式创办穆斯林女童学校。两人都以办学直面殖民社会最顽固的性别偏见，一个低种姓、一个穆斯林，共同证明教育是底层女性突围的路径。",
+    "evidence_summary": "萨维特里巴伊1848年在浦那办女童学校反抗种姓与性别压迫，罗克亚1909年在孟加拉创办穆斯林女校，同为南亚女性教育先驱的跨地域并置。",
+    "evidence_sources": [
+      "https://en.wikipedia.org/wiki/Fatima_Sheikh",
+      "https://thebetterindia.com/295831/begum-rokeya-started-first-school-for-muslim-girls-in-india-history-feminism/"
+    ]
+  },
+  {
+    "id": "conn_027",
+    "source_id": "pandita_ramabai",
+    "target_id": "begum_rokeya",
+    "shared_theme": "education",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "潘迪塔·拉玛巴伊与贝古姆·罗克亚是同时代南亚女性教育与自主权的两大旗手，学界（如Barnita Bagchi）常将二人并置。拉玛巴伊被《The Indian Ladies' Magazine》作为女性楷模介绍，罗克亚恰在该刊发表作品，两人处在同一女性刊物网络之中。她们都反对殖民主义与父权，以跨国筹款办学支撑女性自主。",
+    "evidence_summary": "拉玛巴伊与罗克亚同处《The Indian Ladies’ Magazine》等女性刊物网络并被学界并置，皆以办学与跨国筹款推动南亚女性教育与自主。",
+    "evidence_sources": [
+      "https://en.wikipedia.org/wiki/The_Indian_Ladies%27_Magazine",
+      "https://en.wikipedia.org/wiki/Pandita_Ramabai"
+    ]
+  },
+  {
+    "id": "conn_028",
+    "source_id": "begum_rokeya",
+    "target_id": "malala_yousafzai",
     "shared_theme": "education",
     "connection_type": "cross_both",
-    "connection_explanation": "希帕蒂亚在亚历山大博物馆主持学派、以教学为业；秋瑾回国后主持绍兴大通学堂、以办学为革命据点。两人都把'讲坛/学堂'作为女性进入公共领域的据点，也都因此付出生命代价——希帕蒂亚被暴徒杀害，秋瑾被清廷处决。区别在于，希帕蒂亚的讲堂是既有的精英学术机构，秋瑾的学堂是自建的革命机关。这种差异让我们看见：女性以教育者身份发声，无论是守护既有讲坛还是自建新讲坛，都是对'谁有资格教化他人'这一权力的挑战。",
-    "evidence_summary": "希帕蒂亚主持亚历山大博物馆新柏拉图学派讲学，415 年被杀害；秋瑾主持绍兴大通学堂并以此为反清据点，1907 年就义，两人都以教育者的身份进入公共空间并被当权者或暴徒处死。",
+    "evidence_type": "thematic",
+    "connection_explanation": "罗克亚与马拉拉是穆斯林南亚女童教育权相隔约一个世纪的两次抗争。罗克亚1905年在《苏丹娜之梦》中想象女性主导的乌托邦，1909/1911年以'校内深闺'的妥协把女孩送进学校；马拉拉2012年因坚持上学被塔利班枪击，幸存后以Malala Fund推动全球女童教育。从乌托邦之梦到子弹下的坚持，是同一事业的两代接力。",
+    "evidence_summary": "罗克亚1905年以《苏丹娜之梦》想象女性乌托邦并办学，马拉拉2012年遭枪击后以Malala Fund推动全球女童教育，是同一事业相隔一个世纪的两代接力。",
     "evidence_sources": [
-      "https://www.britannica.com/biography/Hypatia",
-      "https://www.britannica.com/biography/Qiu-Jin"
+      "https://madrascourier.com/biography/begum-rokeya-a-pioneer-of-equal-rights-in-colonial-india/",
+      "https://www.nobelprize.org/prizes/peace/2014/yousafzai/speedread/"
+    ]
+  },
+  {
+    "id": "conn_029",
+    "source_id": "malala_yousafzai",
+    "target_id": "nawal_el_saadawi",
+    "shared_theme": "education",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "马拉拉与娜瓦勒·萨达维都以'发声'挑战对女性教育权与身体权的暴力。萨达维在埃及以医生与作家身份揭露女性割礼之痛，因直言坐牢；马拉拉在巴基斯坦为女童上学发声，遭遇枪击。两人都因替女性说话而直面死亡威胁，也都以写作与行动把个人创伤转化为公共抗争，是'教育权与发声权'的当代双生样本。",
+    "evidence_summary": "萨达维在埃及以揭露女性割礼入狱，马拉拉在巴基斯坦为女童上学遭枪击，两人皆因替女性发声直面死亡威胁，以写作把创伤转化为公共抗争。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Nawal-El-Saadawi",
+      "https://www.nobelprize.org/prizes/peace/2014/yousafzai/speedread/"
+    ]
+  },
+  {
+    "id": "conn_030",
+    "source_id": "huda_shaarawi",
+    "target_id": "nawal_el_saadawi",
+    "shared_theme": "education",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "胡达·沙拉维与娜瓦勒·萨达维是埃及女性主义的跨代传承。沙拉维1923年公开摘下面纱，创办埃及女权联盟、推动女性教育；萨达维以医生与作家身份批判女性割礼与父权法律，两人相隔一代，却共同面对埃及女性身体与教育被规训的问题。一个以社会运动改变制度，一个以写作揭露创伤，是埃及女权从行动到言说的接力。",
+    "evidence_summary": "沙拉维1923年公开摘下面纱、创办埃及女权联盟，萨达维以医生与作家身份批判割礼与父权，是埃及女权从社会运动到写作言说的跨代接力。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Huda-Shaarawi",
+      "https://www.britannica.com/biography/Nawal-El-Saadawi"
+    ]
+  },
+  {
+    "id": "conn_031",
+    "source_id": "susan_b_anthony",
+    "target_id": "emmeline_pankhurst",
+    "shared_theme": "suffrage",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "苏珊·B·安东尼与埃米琳·潘克赫斯特是美英妇女参政运动的两面旗帜。安东尼以巡回演讲与组织建立美国参政网络，晚年放眼国际；潘克赫斯特以WSPU的激进抗议迫使英国议会让步。两人虽无直接合作，却共同把'妇女参政'从边缘议题推向20世纪初的核心政治议程，是跨国参政运动的一体两面。",
+    "evidence_summary": "安东尼以巡回演讲与组织建立美国参政网络，潘克赫斯特以WSPU激进抗议逼英国让步，美英两大参政领袖共同把妇女参政推向20世纪初核心议程。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Susan-B-Anthony",
+      "https://www.britannica.com/biography/Emmeline-Pankhurst"
+    ]
+  },
+  {
+    "id": "conn_032",
+    "source_id": "elizabeth_cady_stanton",
+    "target_id": "kate_sheppard",
+    "shared_theme": "suffrage",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "伊丽莎白·凯迪·斯坦顿与凯特·谢泼德都是19世纪末将'妇女参政'写进宪法的组织者。斯坦顿起草《感伤宣言》为美国女性权利奠基，并推动国际妇女理事会；谢泼德以请愿与巡讲为新西兰1893年率先实现妇女选举权立下首功。两人都相信制度的改变来自一场一场的请愿与签名，是参政权'先声'与'首果'的对照。",
+    "evidence_summary": "斯坦顿起草《感伤宣言》为美国女性权利奠基，谢泼德以请愿巡讲促成新西兰1893年首获妇女选举权，是参政权‘先声’与‘首果’的跨洋对照。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Elizabeth-Cady-Stanton",
+      "https://nzhistory.govt.nz/people/kate-sheppard"
+    ]
+  },
+  {
+    "id": "conn_033",
+    "source_id": "emmeline_pankhurst",
+    "target_id": "kate_sheppard",
+    "shared_theme": "suffrage",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "埃米琳·潘克赫斯特与凯特·谢泼德分别代表妇女参政运动的激进与渐进两极。新西兰1893年在谢泼德以请愿与理性说服推动下成为首个赋予女性选举权的国家；英国直到1928年才在潘克赫斯特母女等激进派的冲击下实现完全平等选举权。两人相隔一国的宪政节奏，呈现同一目标下'温和累积'与'激进突破'两条路径。",
+    "evidence_summary": "谢泼德以理性请愿促成1893年新西兰率先实现妇女选举权，潘克赫斯特以激进抗议逼出1928年英国完全改革，呈现温和累积与激进突破两条路径。",
+    "evidence_sources": [
+      "https://nzhistory.govt.nz/people/kate-sheppard",
+      "https://www.britannica.com/biography/Emmeline-Pankhurst"
+    ]
+  },
+  {
+    "id": "conn_034",
+    "source_id": "emmeline_pankhurst",
+    "target_id": "huda_shaarawi",
+    "shared_theme": "suffrage",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "埃米琳·潘克赫斯特与胡达·沙拉维都在'女性解放'与'民族独立'两条战线上作战。潘克赫斯特以激进参政运动冲击英国父权与帝国结构；沙拉维在埃及民族主义浪潮中发起妇女请愿，1923年公开摘面纱并把埃及女权联盟推向国际。两人相隔文明与帝国语境，却共享'以女性参政推动民族自决'的复合政治议程。",
+    "evidence_summary": "潘克赫斯特以激进参政运动冲击帝国父权，沙拉维在埃及民族主义浪潮中摘面纱、创女权联盟，两人都在女性解放与民族独立双线作战。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Emmeline-Pankhurst",
+      "https://www.britannica.com/biography/Huda-Shaarawi"
+    ]
+  },
+  {
+    "id": "conn_035",
+    "source_id": "kate_sheppard",
+    "target_id": "meri_te_tai_mangakahia",
+    "shared_theme": "suffrage",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "凯特·谢泼德与梅莉·蒂·泰·芒加卡希亚是新西兰妇女参政运动中同场并肩的两种声音。谢泼德以请愿运动主导全国动员；芒加卡希亚作为毛利女性领袖，1893年在毛利议会Te Kotahitanga上提案争取毛利女性参与议会投票。两人同年面对同一部选举法，一个面向殖民议会、一个面向毛利自治，是同一胜利的两种面向。",
+    "evidence_summary": "谢泼德以请愿运动主导全国动员，芒加卡希亚1893年在毛利议会提案争取毛利女性投票权，同场面对同一部选举法，是新西兰参政胜利的两种面向。",
+    "evidence_sources": [
+      "https://nzhistory.govt.nz/people/kate-sheppard",
+      "https://nzhistory.govt.nz/women-together/meri-te-tai-mangakahia"
+    ]
+  },
+  {
+    "id": "conn_036",
+    "source_id": "bertha_lutz",
+    "target_id": "huda_shaarawi",
+    "shared_theme": "suffrage",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "贝尔塔·卢茨与胡达·沙拉维都是20世纪上半叶把本土女权运动带上国际舞台的推动者。卢茨在巴西发起女子选举权运动，并作为唯一女性代表出席《联合国宪章》签署、力主写入性别平等条款；沙拉维创办埃及女权联盟并出任国际妇女联盟副主席。两人都以跨国网络为杠杆，把拉美与中东的妇女诉求写入国际议程。",
+    "evidence_summary": "卢茨以科学法律训练推动巴西女性选举权并促成联合国宪章写入性别平等，沙拉维创埃及女权联盟、任国际妇女联盟副主席，皆以国际网络推动女权。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Bertha-Lutz",
+      "https://www.britannica.com/biography/Huda-Shaarawi"
+    ]
+  },
+  {
+    "id": "conn_037",
+    "source_id": "virginia_woolf",
+    "target_id": "simone_de_beauvoir",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "弗吉尼亚·伍尔夫与西蒙娜·德·波伏瓦是20世纪女性主义理论的两部奠基文本的作者。《一间自己的房间》从经济与空间条件追问'女性为何没有伟大作品'，《第二性》从哲学与存在主义追问'女性为何是他者'。一为文学批评，一为哲学论著，却共同把'女性处境'确立为需要被分析的现代问题。",
+    "evidence_summary": "《一间自己的房间》从经济与空间追问女性为何没有伟大作品，《第二性》从存在主义追问女性为何是他者，一文学批评一哲学论著，共同确立女性处境为现代问题。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Virginia-Woolf",
+      "https://plato.stanford.edu/entries/beauvoir/"
+    ]
+  },
+  {
+    "id": "conn_038",
+    "source_id": "mary_wollstonecraft",
+    "target_id": "simone_de_beauvoir",
+    "shared_theme": "education",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "玛丽·沃斯通克拉夫特与西蒙娜·德·波伏瓦是女性主义理论谱系的两端。沃斯通克拉夫特1792年在《女权辩护》中论证女性之'劣'源于教育与环境的塑造，主张理性与权利；波伏瓦1949年在《第二性》中系统论证'女性是被建构的'。一个以启蒙理性奠基，一个以存在主义重述，中间隔着150年，却共享'女性是后天成为的'这一核心命题。",
+    "evidence_summary": "沃斯通克拉夫特1792年在《女权辩护》论教育塑造女性之‘劣’，波伏瓦1949年在《第二性》论证女性是被建构的，相隔150年共享同一核心命题。",
+    "evidence_sources": [
+      "https://plato.stanford.edu/entries/wollstonecraft/",
+      "https://plato.stanford.edu/entries/beauvoir/"
+    ]
+  },
+  {
+    "id": "conn_039",
+    "source_id": "hiratsuka_raicho",
+    "target_id": "simone_de_beauvoir",
+    "shared_theme": "body",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "平塚雷鸟与西蒙娜·德·波伏瓦都诊断出女性'依附他者而活'的处境。平塚1911年以创刊词'元始，女性是太阳'批判女性如'借他者之光的病月'；波伏瓦在《第二性》中以哲学语言论证女性被建构成'第二性/他者'。一为诗性宣言，一为体系论著，却都指向同一个结构：女性只有确立自我主体，才能结束依附。",
+    "evidence_summary": "平塚1911年以创刊词‘元始，女性是太阳’批判女性如借光之病月，波伏瓦以哲学论证女性被建构成‘第二性’，都指向女性须确立自我主体以结束依附。",
+    "evidence_sources": [
+      "https://www.ndl.go.jp/portrait/e/datas/380/",
+      "https://plato.stanford.edu/entries/beauvoir/"
+    ]
+  },
+  {
+    "id": "conn_040",
+    "source_id": "hiratsuka_raicho",
+    "target_id": "mary_wollstonecraft",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "平塚雷鸟与玛丽·沃斯通克拉夫特都以'宣言式写作'为女性主义奠基。沃斯通克拉夫特1792年以《女权辩护》为女性理性与权利辩护；平塚1911年以《青鞜》创刊词宣告女性自我觉醒，并借英国蓝袜社之名建立日本女性自己的言论阵地。两人相隔一个多世纪、两个文明，却都把'为女性立言'当作思想行动本身。",
+    "evidence_summary": "沃斯通克拉夫特以《女权辩护》为女性理性辩护，平塚以《青鞜》创刊词宣告女性觉醒并借英国蓝袜社之名立言，两人相隔世纪与文明，都把立言当作思想行动。",
+    "evidence_sources": [
+      "https://plato.stanford.edu/entries/wollstonecraft/",
+      "https://www.ndl.go.jp/portrait/e/datas/380/"
+    ]
+  },
+  {
+    "id": "conn_041",
+    "source_id": "virginia_woolf",
+    "target_id": "sappho",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "弗吉尼亚·伍尔夫与萨福共享'女性写作需要自己的岛屿或房间'的命题。伍尔夫在《一间自己的房间》里追问女性写作的条件，并在萨福身上看到'因拥有自己的岛屿而得以自由写作'的女性范例；萨福作为有史可考的第一位女诗人，其自由正是'第十位缪斯'的典范地位。相隔两千多年，两人都在为女性写作的自主权辩护。",
+    "evidence_summary": "伍尔夫在《一间自己的房间》以萨福为‘拥有自己岛屿’的女性写作范例，萨福作为有史可考的第一位女诗人自由写作，相隔两千余年共享‘女性写作需要空间’的命题。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Virginia-Woolf",
+      "https://poets.org/poet/sappho"
+    ]
+  },
+  {
+    "id": "conn_042",
+    "source_id": "sappho",
+    "target_id": "hildegard_of_bingen",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "萨福与希尔德加德是女性创作的音乐/诗歌'失而复得'的两个极端。萨福的抒情诗几乎全部散佚，仅靠纸草碎片被现代重新找回约650行；希尔德加德的约70-80首圣咏作为中世纪最丰富的女性音乐遗产被完整保存。两者都创作'可唱的文本'，一个以碎片提醒女性声音的易逝，一个以完整见证女性声音的绵长。",
+    "evidence_summary": "萨福的抒情诗几乎全部散佚、仅靠纸草碎片找回约650行，希尔德加德的约七八十首圣咏完整存世，两人皆作可唱的文本，见证女性声音的易逝与绵长。",
+    "evidence_sources": [
+      "https://poets.org/poet/sappho",
+      "https://www.worldhistory.org/Hildegard_of_Bingen/"
+    ]
+  },
+  {
+    "id": "conn_043",
+    "source_id": "sappho",
+    "target_id": "gabriela_mistral",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "萨福与加夫列拉·米斯特拉尔是女性抒情诗与女性之爱的跨世纪双声。萨福以描绘女性和欲望的抒情诗成为西方抒情诗的源头；米斯特拉尔在智利以爱与母性、孤独与大地为题的诗歌成为拉丁美洲首位诺奖女诗人。两人都以私人情感入诗、以声音确立女性主体的存在，相隔二十多个世纪却共享'以抒情诗言说自我'的传统。",
+    "evidence_summary": "萨福以描绘女性和欲望的抒情诗成为西方抒情诗源头，米斯特拉尔以爱与母性的诗歌成为拉美首位诺奖女诗人，相隔二十多个世纪共享以抒情诗言说自我。",
+    "evidence_sources": [
+      "https://poets.org/poet/sappho",
+      "https://www.britannica.com/biography/Gabriela-Mistral"
+    ]
+  },
+  {
+    "id": "conn_044",
+    "source_id": "mary_shelley",
+    "target_id": "carolina_maria_de_jesus",
+    "shared_theme": "art_voice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "玛丽·雪莱与卡洛琳娜·玛利亚·德·赫苏斯都是'被父权叙事遮蔽的作者'。雪莱长期以'珀西·雪莱之妻'闻名，其《弗兰肯斯坦》匿名出版、晚年才被重新估值为科幻始祖；赫苏斯在巴西贫民窟写下的日记《垃圾屋》出版后震惊文坛，却被迫承受'文盲女作家'的标签。两人都以写作夺回署名权，也都因身份被低估。",
+    "evidence_summary": "雪莱长期以‘珀西·雪莱之妻’闻名、《弗兰肯斯坦》匿名出版，赫苏斯在贫民窟写下《垃圾屋》却被迫背负‘文盲作家’标签，两人都以写作夺回署名权。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Mary-Wollstonecraft-Shelley",
+      "https://www.britannica.com/biography/Carolina-Maria-de-Jesus"
+    ]
+  },
+  {
+    "id": "conn_045",
+    "source_id": "harriet_tubman",
+    "target_id": "ida_b_wells",
+    "shared_theme": "peace_justice",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "哈莉特·塔布曼与艾达·B·威尔斯代表美国黑人女性反抗的两种路径。塔布曼以地下铁路与武装行动直接摧毁奴隶制；威尔斯以新闻调查与反私刑运动在公开舆论中为黑人抗争。一个以行动、一个以文字，都在白人权力的暗处为黑人生命与尊严开辟出路，是19世纪末黑人女性斗争的互补双翼。",
+    "evidence_summary": "塔布曼以地下铁路与武装行动直接摧毁奴隶制，威尔斯以新闻调查与反私刑运动在舆论中为黑人抗争，是19世纪末美国黑人女性反抗的互补双翼。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Harriet-Tubman",
+      "https://www.britannica.com/biography/Ida-B-Wells-Barnett"
+    ]
+  },
+  {
+    "id": "conn_046",
+    "source_id": "harriet_tubman",
+    "target_id": "rosa_parks",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "哈莉特·塔布曼与罗莎·帕克斯是美国反种族压迫史上两代'拒绝服从'的象征。塔布曼冒死带领数百人逃出奴隶制，被称为'她的摩西'；帕克斯在蒙哥马利公交车上拒绝让座，点燃现代民权运动。两人都以一次'不'的决断对抗体制，一个对抗的是制度化的奴役，一个对抗的是制度化的隔离。",
+    "evidence_summary": "塔布曼冒死带领数百人逃出奴隶制、被称为‘她的摩西’，帕克斯在公交车上拒让座点燃民权运动，两人都以一次‘不’的决断对抗制度化压迫。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Harriet-Tubman",
+      "https://www.britannica.com/biography/Rosa-Parks"
+    ]
+  },
+  {
+    "id": "conn_047",
+    "source_id": "ida_b_wells",
+    "target_id": "rosa_parks",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "艾达·B·威尔斯与罗莎·帕克斯都以'拒绝离开座位'式的日常反抗对抗种族隔离。威尔斯1884年在铁路车厢拒绝让位并起诉铁路公司，后转向反私刑调查；帕克斯1955年在公交车上拒绝让座，引发蒙哥马利抵制。相隔近七十年，两位黑人女性以几乎相同姿态的拒绝，证明民权斗争始于个体对羞辱的拒不接受。",
+    "evidence_summary": "威尔斯1884年在铁路车厢拒绝让座并起诉铁路公司，帕克斯1955年在公交车上拒让座引发蒙哥马利抵制，相隔近七十年，两位黑人女性以相似姿态的拒绝反抗隔离。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Ida-B-Wells-Barnett",
+      "https://www.britannica.com/biography/Rosa-Parks"
+    ]
+  },
+  {
+    "id": "conn_048",
+    "source_id": "ida_b_wells",
+    "target_id": "jo_ann_robinson",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "艾达·B·威尔斯与乔·安·罗宾逊都以'组织反隔离斗争'延续同一条战线的不同时代。威尔斯以调查报道揭露私刑、组织反私刑运动，并早在公交抵制前就在铁路隔离诉讼中发声；罗宾逊作为WPC主席起草传单、策划蒙哥马利抵制。两人都以智识与组织能力站在反种族隔离运动的前端，一个是先锋、一个是接力者。",
+    "evidence_summary": "威尔斯以调查报道揭露私刑、早在铁路隔离诉讼中发声，罗宾逊以WPC传单策划蒙哥马利抵制，两人都以智识与组织站在反种族隔离运动前端。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Ida-B-Wells-Barnett",
+      "https://kinginstitute.stanford.edu/encyclopedia/robinson-jo-ann"
+    ]
+  },
+  {
+    "id": "conn_049",
+    "source_id": "rosa_parks",
+    "target_id": "dolores_huerta",
+    "shared_theme": "peace_justice",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "罗莎·帕克斯与多洛蕾丝·韦尔塔都是美国民权与劳工运动中'以组织改变秩序'的行动者。帕克斯的拒绝让座被组织为持续381天的蒙哥马利抵制；韦尔塔与塞萨尔·查韦斯共同创建UFW农会，以罢工与抵制为农场工人争取权益。两人都把一次个体反抗转化为结构性组织，一个是民权运动的火种、一个是劳工运动的引擎。",
+    "evidence_summary": "帕克斯的拒让座被组织为381天的蒙哥马利抵制，韦尔塔与查韦斯共建UFW农会为农场工人维权，两人都把个体反抗转化为结构性组织。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Rosa-Parks",
+      "https://www.britannica.com/biography/Dolores-Huerta"
+    ]
+  },
+  {
+    "id": "conn_050",
+    "source_id": "bertha_von_suttner",
+    "target_id": "leymah_gbowee",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "贝塔·冯·苏特纳与莱伊曼·格鲍伊是相隔一个世纪的女性诺贝尔和平奖得主。苏特纳以《放下武器！》和世界和平大会推动欧洲反战舆论，成为1905年首位女性和平奖得主；格鲍伊在利比里亚内战中以'性罢工'与跨宗教女性网络逼和交战双方，2005年获和平奖。两人都把女性的动员能力锻造成反战的政治力量。",
+    "evidence_summary": "苏特纳以《放下武器！》与和平大会成为1905年首位女性和平奖得主，格鲍伊以‘性罢工’与跨宗教女性网络逼和交战双方获2005年和平奖，女性动员被锻造成反战力量。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Bertha-von-Suttner",
+      "https://www.nobelprize.org/prizes/peace/2011/gbowee/facts/"
+    ]
+  },
+  {
+    "id": "conn_051",
+    "source_id": "bertha_von_suttner",
+    "target_id": "wangari_maathai",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "贝塔·冯·苏特纳与旺加里·马塔伊都以'女性的手'参与和平建构，只是战场不同。苏特纳以反战著作与和平大会在19世纪末的欧洲为和平奠基；马塔伊以绿色带运动在肯尼亚动员妇女植树，把环境保护与妇女赋权、政治民主连成一体。两人都相信和平不是条约签署的瞬间，而是由女性的日常劳动垒成的结构。",
+    "evidence_summary": "苏特纳以反战著作与和平大会在19世纪末欧洲为和平奠基，马塔伊以绿色带运动把植树、妇女赋权与政治民主连成一体，都以女性的日常劳动垒成和平结构。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Bertha-von-Suttner",
+      "https://www.nobelprize.org/prizes/peace/2004/maathai/facts/"
+    ]
+  },
+  {
+    "id": "conn_052",
+    "source_id": "bertha_von_suttner",
+    "target_id": "sylvia_pankhurst",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "贝塔·冯·苏特纳与西尔维娅·潘克赫斯特都把反战与女性解放连成同一条战线。苏特纳以《放下武器！》和1905年和平奖把反战引入欧洲主流政治；西尔维娅在参政运动之外转向反法西斯、反殖民，晚年以文字与援助支持埃塞俄比亚抵抗意大利入侵。两人都以'和平不止于停战'的视野，把女性主义扩展为对一切暴力的反抗。",
+    "evidence_summary": "苏特纳以《放下武器！》与1905年和平奖把反战引入主流政治，西尔维娅把参政运动扩展为反法西斯反殖民、晚年支援埃塞俄比亚抗战，两人皆以‘和平不止停战’扩展女性主义。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Bertha-von-Suttner",
+      "https://www.britannica.com/biography/Sylvia-Pankhurst"
+    ]
+  },
+  {
+    "id": "conn_053",
+    "source_id": "wangari_maathai",
+    "target_id": "leymah_gbowee",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "旺加里·马塔伊与莱伊曼·格鲍伊是非洲当代两位诺贝尔和平奖得主。马塔伊以绿色带运动动员肯尼亚妇女植树，在2004年成为首位获和平奖的非洲女性；格鲍伊在利比里亚以跨宗教女性网络与性罢工结束内战，2005年获奖。两人都证明：在非洲，女性的和平力量不在枪杆里，而在组织、在土地、在日复一日的行动中。",
+    "evidence_summary": "马塔伊2004年以绿色带运动成为首位获和平奖的非洲女性，格鲍伊2005年以女性网络与性罢工结束利比里亚内战，连续两届非洲女性和平奖得主的并置。",
+    "evidence_sources": [
+      "https://www.nobelprize.org/prizes/peace/2004/maathai/facts/",
+      "https://www.nobelprize.org/prizes/peace/2011/gbowee/facts/"
+    ]
+  },
+  {
+    "id": "conn_054",
+    "source_id": "wangari_maathai",
+    "target_id": "funmilayo_ransome_kuti",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "旺加里·马塔伊与芬米拉约·兰索梅-库蒂都是组织女性对抗威权体制的非洲行动者。兰索梅-库蒂领导埃格巴妇女抗议殖民税收、动员数千女性（后发展为著名的Abeokuta妇女抗议），晚年直面军政府；马塔伊在肯尼亚以植树运动对抗土地掠夺与独裁，为此多次入狱。两人都以女性组织的集体行动，把'不'说给殖民与专制权力听。",
+    "evidence_summary": "兰索梅-库蒂领导埃格巴女性抗税、动员数千女性对抗殖民当局，马塔伊以植树运动对抗土地掠夺与独裁、为此多次入狱，皆以女性集体行动说‘不’给威权。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Funmilayo-Ransome-Kuti",
+      "https://www.nobelprize.org/prizes/peace/2004/maathai/facts/"
+    ]
+  },
+  {
+    "id": "conn_055",
+    "source_id": "wangari_maathai",
+    "target_id": "oodgeroo_noonuccal",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "旺加里·马塔伊与奥德杰鲁·努努卡尔都以'土地与族群自决'连接环境正义与权利运动。马塔伊在肯尼亚把植树变成反土地掠夺、反贫困的政治行动；努努卡尔作为澳大利亚原住民诗人与活动家，为土地权利与原住民尊严发声。两人都看到：对被边缘化的族群而言，脚下的土地从来不只是资源，而是身份与生存本身。",
+    "evidence_summary": "马塔伊在肯尼亚把植树变成反土地掠夺、反贫困的政治行动，努努卡尔为澳大利亚原住民土地权利与身份正名，两人都看到土地对边缘族群即是生存本身。",
+    "evidence_sources": [
+      "https://www.nobelprize.org/prizes/peace/2004/maathai/facts/",
+      "https://www.britannica.com/biography/Oodgeroo-Noonuccal"
+    ]
+  },
+  {
+    "id": "conn_056",
+    "source_id": "funmilayo_ransome_kuti",
+    "target_id": "yaa_asantewaa",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "芬米拉约·兰索梅-库蒂与亚阿·阿桑特瓦是非洲反殖民女性领导的两种形态。阿桑特瓦1900年领导阿散蒂帝国对英属黄金海岸殖民者发动最后一场战争，是武装反抗的象征；兰索梅-库蒂以组织女性抗议殖民税收、推动尼日利亚独立，是谈判与动员的代表。两人相隔半个世纪，一个以武器、一个以组织，共同书写非洲女性反殖民史。",
+    "evidence_summary": "阿桑特瓦1900年领导阿散蒂抗英战争，兰索梅-库蒂组织女性抗议殖民税收、推动尼日利亚独立，一个以武器一个以组织，共同书写非洲女性反殖民史。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Yaa-Asantewaa",
+      "https://www.britannica.com/biography/Funmilayo-Ransome-Kuti"
+    ]
+  },
+  {
+    "id": "conn_057",
+    "source_id": "yaa_asantewaa",
+    "target_id": "juana_azurduy",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_both",
+    "evidence_type": "thematic",
+    "connection_explanation": "亚阿·阿桑特瓦与胡安娜·阿苏尔杜伊是跨大陆'以武装领导反殖民斗争'的老年女性领袖。阿桑特瓦六十多岁仍领导阿散蒂抗英战争；阿苏尔杜伊在拉丁美洲独立战争中率军作战、身披军装统领游击队。两人都以超越性别与年龄的军事领导力，在殖民帝国的战场上证明女性可以是民族存亡之时的最高指挥。",
+    "evidence_summary": "阿桑特瓦六十多岁仍领导阿散蒂抗英战争，阿苏尔杜伊在拉美独立战争中率军统领游击队，两人都以超越性别与年龄的军事领导力成为民族存亡时的最高指挥。",
+    "evidence_sources": [
+      "https://www.britannica.com/biography/Yaa-Asantewaa",
+      "https://www.britannica.com/biography/Juana-Azurduy"
+    ]
+  },
+  {
+    "id": "conn_058",
+    "source_id": "leymah_gbowee",
+    "target_id": "whina_cooper",
+    "shared_theme": "peace_justice",
+    "connection_type": "cross_region",
+    "evidence_type": "thematic",
+    "connection_explanation": "莱伊曼·格鲍伊与惠娜·库珀都是'祖母级'女性领导人与和平的缔造者。格鲍伊以平民女性身份把利比里亚交战双方逼回谈判桌；库珀70多岁时领导毛利土地游行，把半个世纪的原住民土地诉求带进国会。两人都在权力结构之外的年纪与位置，以女性独有的韧性成为民族和解与权利运动的枢纽。",
+    "evidence_summary": "格鲍伊以平民女性身份把利比里亚交战双方逼回谈判桌，库珀七十多岁时领导毛利土地游行，两人都在权力结构之外以祖母级韧劲成为和解与权利的枢纽。",
+    "evidence_sources": [
+      "https://www.nobelprize.org/prizes/peace/2011/gbowee/facts/",
+      "https://nzhistory.govt.nz/people/dame-whina-cooper"
+    ]
+  },
+  {
+    "id": "conn_059",
+    "source_id": "whina_cooper",
+    "target_id": "faith_bandler",
+    "shared_theme": "peace_justice",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "惠娜·库珀与费丝·班德勒都是为族群宪法权利奔走终身的女长者。班德勒作为澳大利亚原住民活动家，为1967年宪法修改（赋予原住民公民权）发起全国请愿；库珀领导毛利土地运动、推动《怀唐伊条约》的权益落实。两人都相信'权利要在宪法的字缝里争取'，以请愿、游行与谈判改写了各自国家的原住民权利版图。",
+    "evidence_summary": "班德勒为1967年澳大利亚宪法修改发起全国请愿，库珀领导毛利土地运动推动《怀唐伊条约》权益落实，两人都相信权利要在宪法字缝里争取。",
+    "evidence_sources": [
+      "https://aiatsis.gov.au/explore/faith-bandler",
+      "https://nzhistory.govt.nz/people/dame-whina-cooper"
+    ]
+  },
+  {
+    "id": "conn_060",
+    "source_id": "meri_te_tai_mangakahia",
+    "target_id": "oodgeroo_noonuccal",
+    "shared_theme": "peace_justice",
+    "connection_type": "same_era",
+    "evidence_type": "thematic",
+    "connection_explanation": "梅莉·蒂·泰·芒加卡希亚与奥德杰鲁·努努卡尔是南太平洋原住民女性为土地与权利发声的两代。芒加卡希亚1893年在毛利议会为毛利女性投票权提案；努努卡尔以诗歌与演说为原住民土地权利与身份正名。两人都站在殖民社会对原住民声音的遮蔽之中，以议会提案与诗歌两种形式，让原住民女性的主张被听见。",
+    "evidence_summary": "芒加卡希亚1893年在毛利议会为毛利女性投票权提案，努努卡尔以诗歌与演说为原住民土地权利正名，两人都以议会提案与诗歌让原住民女性的主张被听见。",
+    "evidence_sources": [
+      "https://nzhistory.govt.nz/women-together/meri-te-tai-mangakahia",
+      "https://www.britannica.com/biography/Oodgeroo-Noonuccal"
     ]
   }
 ]

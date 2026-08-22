@@ -88,6 +88,7 @@ function makeConnection(
     target_id: target.id,
     shared_theme: theme,
     connection_type: connectionType,
+    evidence_type: "thematic",
     connection_explanation: `这是用于测试 SHESHAPES 弧线生长动画的示例联结：${source.name_zh} 与 ${target.name_zh} 都从“${theme}”相关的经验出发，虽然生活在不同地域或时代，却都把个人行动转化为可以被后来者继续使用的公共方法。`,
     evidence_summary: "视觉演示占位关系，不代表经过史料核验的历史判断。",
     evidence_sources: [`https://example.com/sheshapes-demo/connections/${source.id}-${target.id}`],
