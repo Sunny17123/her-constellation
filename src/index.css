@@ -219,3 +219,161 @@
     }
   }
 }
+
+/* ============================================================
+   2D 星群界面样式 · constellation graph (cg-)
+   服务于 NetworkGraph：星卡 / 筛选标签 / 图例 / 时间轴 / 加载文案
+   ============================================================ */
+@layer utilities {
+  /* 星卡：玻璃拟态背景 + 渐变描边 */
+  .cg-starcard {
+    position: relative;
+    background:
+      radial-gradient(circle at 18% 0%, rgba(245, 166, 35, 0.16) 0%, transparent 55%),
+      radial-gradient(circle at 82% 100%, rgba(155, 89, 182, 0.18) 0%, transparent 55%),
+      rgba(14, 19, 33, 0.92);
+    border: 1px solid transparent;
+    backdrop-filter: blur(10px);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      0 0 24px rgba(245, 166, 35, 0.08);
+  }
+  .cg-starcard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #F5A623 0%, #9B59B6 50%, #3498DB 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* 星卡名字渐变文字 */
+  .cg-name-gold {
+    background: linear-gradient(135deg, #F5D980 0%, #F2C14E 50%, #B79CFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* 分隔线：星光渐隐 */
+  .cg-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.45) 50%, transparent);
+  }
+
+  /* 筛选标签 */
+  .cg-tag {
+    transition: all 0.18s ease;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+    color: hsl(220 15% 65%);
+  }
+  .cg-tag:hover {
+    border-color: rgba(245, 166, 35, 0.5);
+    color: hsl(220 15% 90%);
+    background: rgba(245, 166, 35, 0.06);
+  }
+  .cg-tag-active {
+    border-color: rgba(245, 166, 35, 0.85) !important;
+    color: #F5D980 !important;
+    background: rgba(245, 166, 35, 0.14) !important;
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.22);
+  }
+  /* 标签分组色点 */
+  .cg-dot-field {
+    background: #F5A623;
+  }
+  .cg-dot-region {
+    background: #3498DB;
+  }
+  .cg-dot-century {
+    background: #9B59B6;
+  }
+
+  /* 图例连线预览（一条粗细可调的边框线） */
+  .cg-legend-line {
+    width: 28px;
+    height: 0;
+    border-top-width: 2px;
+    border-top-style: solid;
+    flex-shrink: 0;
+  }
+
+  /* 时间轴滑块 */
+  .cg-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(245, 166, 35, 0.5), rgba(155, 89, 182, 0.5));
+    outline: none;
+  }
+  .cg-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #FFF6D6, #F2C14E 60%, #B57B0F);
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.6), 0 0 24px rgba(245, 166, 35, 0.3);
+    cursor: pointer;
+    border: none;
+  }
+  .cg-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #FFF6D6, #F2C14E 60%, #B57B0F);
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.6);
+    cursor: pointer;
+    border: none;
+  }
+
+  /* 加载文案遮罩 */
+  .cg-intro {
+    background: radial-gradient(circle at 50% 45%, rgba(7, 11, 20, 0.55) 0%, rgba(7, 11, 20, 0.9) 100%);
+    backdrop-filter: blur(2px);
+  }
+  .cg-intro-text {
+    background: linear-gradient(135deg, #F5D980 0%, #F2C14E 40%, #B79CFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: cg-intro-breathe 2.6s ease-in-out infinite;
+  }
+  @keyframes cg-intro-breathe {
+    0%, 100% { opacity: 0.55; letter-spacing: 0.1em; }
+    50% { opacity: 1; letter-spacing: 0.18em; }
+  }
+
+  /* 微闪烁 */
+  @keyframes cg-twinkle {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+  .cg-twinkle {
+    animation: cg-twinkle 2.4s ease-in-out infinite;
+  }
+
+  /* 顶部 / 底部玻璃条 */
+  .cg-glass {
+    background: rgba(10, 14, 24, 0.62);
+    backdrop-filter: blur(14px);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* 减少动画偏好降级 */
+  @media (prefers-reduced-motion: reduce) {
+    .cg-twinkle,
+    .cg-intro-text {
+      animation: none;
+    }
+  }
+}
