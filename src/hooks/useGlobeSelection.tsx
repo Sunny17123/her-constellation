@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
-import { getAllPeople, getAllConnections, getConnectionsForPerson } from "@/data/load";
+import { getAllPeople, getAllConnections } from "@/data/load";
+import { demoConnections, demoPeople } from "@/components/globe/demoData";
 import type { Person, Connection } from "@/data/schema";
 
 interface GlobeSelectionState {
@@ -34,8 +35,9 @@ export function GlobeSelectionProvider({ children }: { children: ReactNode }) {
   const [selectedConnectionId, setSelectedConnectionId] = useState<string | null>(null);
   const [highlightTheme, setHighlightTheme] = useState<string | null>(null);
 
-  const allPeople = getAllPeople();
-  const allConnections = getAllConnections();
+  const useDemoData = new URLSearchParams(window.location.search).has("demo");
+  const allPeople = useDemoData ? demoPeople : getAllPeople();
+  const allConnections = useDemoData ? demoConnections : getAllConnections();
 
   const selectPerson = useCallback((id: string | null) => {
     setSelectedId(id);
@@ -48,7 +50,10 @@ export function GlobeSelectionProvider({ children }: { children: ReactNode }) {
 
   const getEchoes = useCallback(
     (personId: string): Connection[] => {
-      return getConnectionsForPerson(personId);
+      return allConnections.filter(
+        (connection) =>
+          connection.source_id === personId || connection.target_id === personId
+      );
     },
     []
   );
