@@ -544,6 +544,34 @@ export default function NetworkGraph() {
     }
   };
 
+  /**
+   * 命中区与自绘星体保持一致；库的默认命中半径只有约 4px，
+   * 会让大部分可见星体无法交互。缩放后至少保留 36px 的触控直径。
+   */
+  const drawNodePointerArea = (
+    node: any,
+    paintColor: string,
+    ctx: CanvasRenderingContext2D,
+    globalScale: number
+  ) => {
+    const n = node as GraphNode;
+    if (!visibleNodeIds.has(n.id) || n.x == null || n.y == null) return;
+
+    if (showIntro) {
+      const total = nodes.length || 1;
+      const appearAt = (n.appearIndex / total) * 0.6;
+      if (reveal <= appearAt) return;
+    }
+
+    const scale = focusId === n.id ? 1.3 : 1;
+    const minTouchRadius = 18 / Math.max(globalScale, 0.1);
+    const hitRadius = Math.max(n.radius * scale, minTouchRadius);
+    ctx.fillStyle = paintColor;
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, hitRadius, 0, 2 * Math.PI);
+    ctx.fill();
+  };
+
   /** 连线绘制：颜色 / 虚线 / 宽度 / 发光 / 距离衰减 / 高亮淡化 */
   const drawLink = (link: any, ctx: CanvasRenderingContext2D) => {
     const gl = link._gl as GraphLink | undefined;
@@ -754,6 +782,7 @@ export default function NetworkGraph() {
           height={size.h}
           nodeCanvasObject={drawNode}
           nodeCanvasObjectMode={() => "replace" as const}
+          nodePointerAreaPaint={drawNodePointerArea}
           linkCanvasObject={drawLink}
           linkCanvasObjectMode={() => "replace" as const}
           onNodeHover={onNodeHover}

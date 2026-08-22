@@ -10,6 +10,7 @@
  * 字段补全后只需替换 computeImportance 内部即可。
  */
 import type { Person, Connection } from "@/data/schema";
+import { continentLabelOf } from "@/data/regions";
 
 /* ----------------------------- 联结光谱 ----------------------------- */
 
@@ -175,15 +176,9 @@ export function fieldsOf(person: Person): string[] {
   return [...set];
 }
 
-/** 大洲推断（基于 region_en 文本匹配） */
+/** 大洲推断（与数据统计共用同一地域归一化规则） */
 export function continentOf(person: Person): string {
-  const r = person.region_en.toLowerCase();
-  if (/(china|japan|korea|india|tibet|shaoxing|maharashtra|asia)/.test(r)) return "亚洲";
-  if (/(egypt|alexandria|africa|ethiopia|nigeria|kenya)/.test(r)) return "非洲";
-  if (/(england|france|germany|italy|spain|russia|europe|britain|poland)/.test(r)) return "欧洲";
-  if (/(america|usa|u\.s\.|new york|california|mexico|brazil|argentina)/.test(r)) return "美洲";
-  if (/(australia|oceania|new zealand)/.test(r)) return "大洋洲";
-  return "其他";
+  return continentLabelOf(person);
 }
 
 /** 世纪推断（基于出生年） */

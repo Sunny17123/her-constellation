@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGlobeSelection } from "@/hooks/useGlobeSelection";
 import SurpriseMe from "@/components/ui/SurpriseMe";
 import FeelingShareFab from "@/components/share/FeelingShareFab";
 import SearchPanel from "@/components/search/SearchPanel";
+import StatsDialog from "@/components/ui/StatsDialog";
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 
@@ -13,7 +13,6 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const navigate = useNavigate();
-  const { allPeople, allConnections } = useGlobeSelection();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -46,9 +45,7 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* 左下角计数 + 网络视图入口 */}
       <footer className="fixed bottom-6 left-6 z-40 flex items-center gap-4">
-        <p className="text-xs text-muted-foreground pointer-events-none">
-          已点亮 {allPeople.length} 位 · {allConnections.length} 条呼应
-        </p>
+        <StatsDialog />
         <Button
           variant="ghost"
           size="sm"
