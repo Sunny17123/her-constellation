@@ -135,25 +135,17 @@ export default function NetworkGraph() {
       .filter((x): x is GraphLink => x !== null);
   }, [allConnections, nodeById]);
 
-  /* ----------------------------- 时间轴范围 ----------------------------- */
+  /* ----------------------------- 时间轴范围：固定 300 – 2025 ----------------------------- */
 
-  const { minYear, maxYear } = useMemo(() => {
-    const years = allPeople
-      .map((p) => p.birth_year)
-      .filter((y): y is number => y != null);
-    if (years.length === 0) return { minYear: 1800, maxYear: 2025 };
-    const mn = Math.min(...years);
-    const mx = Math.max(...years);
-    // 向外取整到 50 年刻度，留出余量
-    return {
-      minYear: Math.floor(mn / 50) * 50,
-      maxYear: Math.ceil(mx / 50) * 50,
-    };
-  }, [allPeople]);
+  /** 时间轴固定范围（不再根据数据自动伸缩，保证与全量故事集对齐） */
+  const MIN_YEAR = 300;
+  const MAX_YEAR = 2025;
+  const minYear = MIN_YEAR;
+  const maxYear = MAX_YEAR;
 
   useEffect(() => {
-    setYear(maxYear);
-  }, [maxYear]);
+    setYear(MAX_YEAR);
+  }, []);
 
   /* ----------------------------- 筛选 / 高亮集合 ----------------------------- */
 
@@ -221,27 +213,71 @@ export default function NetworkGraph() {
   }, []);
 
   useEffect(() => {
-    const fg = fgRef.current;
-    if (!fg) return;
+    const fg = fgRef.current as any;
+    if (!fg || typeof fg.d3Force !== "function") return;
     // 动态斥力：节点多斥力大，避免重叠
     const n = nodes.length;
     const charge = fg.d3Force("charge");
-    if (charge) charge.strength(-(100 + n * 8));
+    if (charge && typeof charge.strength === "function") {
+      charge.strength(-(160 + n * 10));
+    }
     const link = fg.d3Force("link");
     if (link) {
-      link.distance(110);
-      link.strength(0.2);
+      if (typeof link.distance === "function") link.distance(130);
+      if (typeof link.strength === "function") link.strength(0.18);
     }
-    fg.d3VelocityDecay(0.35);
-    fg.d3ReheatSimulation();
+    const center = fg.d3Force("center");
+    if (center && typeof center.strength === "function") center.strength(0.05);
+    const collide = fg.d3Force("collision");
+    if (collide && typeof collide.radius === "function") {
+      collide.radius((nd: GraphNode) => nd.radius + 6).strength(0.8);
+    }
+    // 修正 react-force-graph-2d 不存在 d3VelocityDecay()/d3ReheatSimulation() 的问题
+    const sim =
+      (fg.simulation && typeof fg.simulation === "function"
+        ? fg.simulation()
+        : null) ||
+      (fg.d3ForceSim as any) ||
+      (fg.__d3Sim as any) ||
+      null;
+    if (sim) {
+      if (typeof sim.velocityDecay === "function") {
+        try {
+          sim.velocityDecay(0.35);
+        } catch {
+          /* noop */
+        }
+      } else if ("velocityDecay" in sim) {
+        (sim as any).velocityDecay = 0.35;
+      }
+      if (typeof sim.alphaTarget === "function") {
+        try {
+          sim.alpha(0.6).restart();
+        } catch {
+          /* noop */
+        }
+      }
+    }
   }, [nodes.length]);
 
-  // 加载动画结束后自适应视图
+  // 自适应视图：加载动画结束后 zoomToFit，并且尺寸变化后再 fit
   useEffect(() => {
     if (showIntro) return;
-    const t = setTimeout(() => fgRef.current?.zoomToFit(400, 70), 200);
-    return () => clearTimeout(t);
-  }, [showIntro]);
+    const fg = fgRef.current as any;
+    const run = () => {
+      try {
+        fg?.zoomToFit?.(600, 60);
+      } catch {
+        /* noop */
+      }
+    };
+    const t1 = setTimeout(run, 200);
+    const t2 = setTimeout(run, 1200);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [showIntro, size.w, size.h]);
 
   /* ----------------------------- 搜索 ----------------------------- */
 
@@ -350,16 +386,19 @@ export default function NetworkGraph() {
   const graphData = useMemo(
     () => ({
       nodes: nodes.map((n) => ({ ...n })),
-      links: links.map((l) => ({
-        source: l.source.id,
-        target: l.target.id,
-        _gl: l,
-      })),
+      links:
+        nodes.length === 0
+          ? []
+          : links.map((l) => ({
+              source: l.source.id,
+              target: l.target.id,
+              _gl: l,
+            })),
     }),
     [nodes, links]
   );
 
-  /** 节点绘制：光晕 → 星环 → 实心圆 → 中心高光 → 名字 */
+  /** 节点绘制（简化版）：一层柔和光晕 → 重要节点单圈星环 → 恒星核（色系保留） → 中心高光 → 名字 */
   const drawNode = (node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
     const n = node as GraphNode;
     if (!visibleNodeIds.has(n.id)) return;
@@ -371,55 +410,133 @@ export default function NetworkGraph() {
     let alpha = showIntro ? clamp01((reveal - appearAt) / 0.3) : 1;
     if (alpha <= 0) return;
 
-    // 筛选淡化：不匹配者降至 18%
+    // 筛选淡化：不匹配者降至 15%
     const matched = matchedNodeIds.has(n.id);
-    if (filters.length > 0 && !matched) alpha *= 0.18;
+    if (filters.length > 0 && !matched) alpha *= 0.15;
 
     // 高亮态：1.3 倍 + 光晕增强
     const focused = focusId === n.id;
     const scale = focused ? 1.3 : 1;
     const r = n.radius * scale;
+    const color = n.color;
+    const x = n.x;
+    const y = n.y;
+    const gs = globalScale;
 
-    // 1) 光晕（径向渐变）
-    const glowR = r * 3.6;
-    const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR);
-    grd.addColorStop(0, hexA(n.color, 0.55 * alpha));
-    grd.addColorStop(0.4, hexA(n.color, 0.18 * alpha));
-    grd.addColorStop(1, hexA(n.color, 0));
-    ctx.fillStyle = grd;
-    ctx.beginPath();
-    ctx.arc(n.x, n.y, glowR, 0, 2 * Math.PI);
-    ctx.fill();
-
-    // 2) 星环（重要节点：score > 0.55）
-    if (n.importance.score > 0.55) {
-      ctx.strokeStyle = hexA(n.color, (focused ? 0.55 : 0.3) * alpha);
-      ctx.lineWidth = focused ? 1.5 : 1;
+    // ============================================================
+    // 一层 · 柔和光晕（色系保留，不做厚重星云）
+    // ============================================================
+    {
+      const glowR = r * (focused ? 3.6 : 2.7);
+      const grd = ctx.createRadialGradient(x, y, 0, x, y, glowR);
+      grd.addColorStop(0, hexA(color, 0.48 * alpha));
+      grd.addColorStop(0.45, hexA(color, 0.16 * alpha));
+      grd.addColorStop(1, hexA(color, 0));
+      ctx.fillStyle = grd;
       ctx.beginPath();
-      ctx.arc(n.x, n.y, r * 1.7, 0, 2 * Math.PI);
+      ctx.arc(x, y, glowR, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    // ============================================================
+    // 二层 · 星环（重要节点 score > 0.55，单圈，不再做双椭圆）
+    // ============================================================
+    if (n.importance.score > 0.55) {
+      ctx.strokeStyle = hexA(color, (focused ? 0.7 : 0.45) * alpha);
+      ctx.lineWidth = (focused ? 1.4 : 1) / gs;
+      ctx.beginPath();
+      ctx.arc(x, y, r * 1.85, 0, 2 * Math.PI);
+      ctx.stroke();
+      // 内缘一条细亮（极简）
+      ctx.strokeStyle = hexA("#FFFFFF", (focused ? 0.45 : 0.2) * alpha);
+      ctx.lineWidth = 0.6 / gs;
+      ctx.beginPath();
+      ctx.arc(x, y, r * 1.5, 0, 2 * Math.PI);
       ctx.stroke();
     }
 
-    // 3) 实心圆（本体）
-    ctx.fillStyle = hexA(n.color, alpha);
-    ctx.beginPath();
-    ctx.arc(n.x, n.y, r, 0, 2 * Math.PI);
-    ctx.fill();
+    // ============================================================
+    // 三层 · 恒星核（色系保留：外圈主题色 → 内圈白核，偏左上高光）
+    // ============================================================
+    {
+      const grd = ctx.createRadialGradient(
+        x - r * 0.22,
+        y - r * 0.22,
+        0,
+        x,
+        y,
+        r * 1.02
+      );
+      grd.addColorStop(0, hexA("#FFFFFF", 1 * alpha));
+      grd.addColorStop(0.4, hexA("#FFF8F0", 0.95 * alpha));
+      grd.addColorStop(0.78, hexA(color, 0.92 * alpha));
+      grd.addColorStop(1, hexA(color, 0.6 * alpha));
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, 2 * Math.PI);
+      ctx.fill();
 
-    // 中心高光（白色小点，模拟恒星核）
-    ctx.fillStyle = hexA("#FFFFFF", 0.7 * alpha);
-    ctx.beginPath();
-    ctx.arc(n.x - r * 0.25, n.y - r * 0.25, r * 0.32, 0, 2 * Math.PI);
-    ctx.fill();
+      // 恒星核外描一圈细亮边，保持干净的点状形态
+      ctx.strokeStyle = hexA("#FFFFFF", (focused ? 0.6 : 0.28) * alpha);
+      ctx.lineWidth = 0.8 / gs;
+      ctx.stroke();
+    }
 
-    // 4) 名字：重要节点常显，其余仅高亮/悬停时显
+    // ============================================================
+    // 四层 · 星点高光（主高光 + 次高光，简化为一个小点）
+    // ============================================================
+    {
+      ctx.fillStyle = hexA("#FFFFFF", 0.95 * alpha);
+      ctx.beginPath();
+      ctx.arc(x - r * 0.28, y - r * 0.28, r * 0.26, 0, 2 * Math.PI);
+      ctx.fill();
+      // 次高光：非常淡
+      ctx.fillStyle = hexA("#FFFFFF", 0.38 * alpha);
+      ctx.beginPath();
+      ctx.arc(x + r * 0.22, y + r * 0.16, r * 0.11, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    // ============================================================
+    // 名字：重要节点常显，其余仅高亮/悬停时显（保留胶囊衬底 + 色系发光）
+    // ============================================================
     if (n.importance.score > 0.6 || focused || hoveredId === n.id) {
-      const fs = 12 / globalScale;
-      ctx.font = `${fs}px "Noto Serif SC", serif`;
+      const fs = Math.max(11, 13 / gs);
+      ctx.save();
+      ctx.font = `500 ${fs}px "Noto Serif SC", "Source Han Serif SC", ui-serif, serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
-      ctx.fillStyle = hexA("#EDEFF5", 0.92 * alpha);
-      ctx.fillText(n.person.name_zh, n.x, n.y + r + 4 / globalScale);
+      const padX = 8;
+      const padY = 3;
+      const name = n.person.name_zh;
+      const textW = ctx.measureText(name).width;
+      const textX = x;
+      const textY = y + r + 7 / gs;
+      // 半透明衬底（避免被连线糊住）
+      ctx.fillStyle = hexA("#070B14", 0.55 * alpha);
+      ctx.beginPath();
+      const rx = textX - textW / 2 - padX;
+      const ry = textY - 1;
+      const rw = textW + padX * 2;
+      const rh = fs + padY * 2;
+      const rr = Math.min(rw, rh) / 2;
+      ctx.moveTo(rx + rr, ry);
+      ctx.arcTo(rx + rw, ry, rx + rw, ry + rh, rr);
+      ctx.arcTo(rx + rw, ry + rh, rx, ry + rh, rr);
+      ctx.arcTo(rx, ry + rh, rx, ry, rr);
+      ctx.arcTo(rx, ry, rx + rw, ry, rr);
+      ctx.closePath();
+      ctx.fill();
+      // 边框细亮（色系保留）
+      ctx.strokeStyle = hexA(color, 0.4 * alpha);
+      ctx.lineWidth = 0.55 / gs;
+      ctx.stroke();
+      // 文字
+      ctx.fillStyle = hexA("#F3F4FA", 0.95 * alpha);
+      ctx.shadowColor = hexA(color, 0.8 * alpha);
+      ctx.shadowBlur = 5;
+      ctx.fillText(name, textX, textY);
+      ctx.restore();
     }
   };
 
@@ -697,5 +814,6 @@ function TagChip({
       )}
       {label}
     </button>
-  );
+  )
+  }
 }
