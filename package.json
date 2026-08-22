@@ -9,9 +9,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "validate-data": "node scripts/lint-data.mjs"
+    "validate-data": "node scripts/lint-data.mjs",
+    "smoke:api": "node scripts/smoke-api.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
     "@radix-ui/react-dialog": "^1.1.23",
     "@radix-ui/react-scroll-area": "^1.2.18",
     "@types/three": "^0.183.0",
@@ -34,6 +36,7 @@
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "esbuild": "^0.21.5",
     "lucide-react": "^0.441.0",
     "postcss": "^8.4.41",
     "tailwind-merge": "^2.5.2",

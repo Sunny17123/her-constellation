@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobeSelection } from "@/hooks/useGlobeSelection";
 import SurpriseMe from "@/components/ui/SurpriseMe";
+import FeelingShareFab from "@/components/share/FeelingShareFab";
+import SearchPanel from "@/components/search/SearchPanel";
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 
@@ -17,14 +19,20 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen bg-background text-foreground">
       {/* 顶部导航 */}
       <header className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6">
-        <div className="flex items-center justify-between">
-            <div className="pointer-events-none">
-              <h1 className="text-lg md:text-xl font-serif tracking-wide text-primary">
-                ✦ Her Constellation
-              </h1>
-              <p className="text-xs text-muted-foreground mt-1 hidden sm:block">
-                她们一直都在，只是没人点亮
-              </p>
+        <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <div className="pointer-events-none">
+                <h1 className="text-lg md:text-xl font-serif tracking-wide text-primary">
+                  ✦ Her Constellation
+                </h1>
+                <p className="text-xs text-muted-foreground mt-1 hidden sm:block">
+                  她们一直都在，只是没人点亮
+                </p>
+              </div>
+              {/* 主题探索搜索栏（logo 下方） */}
+              <div className="mt-3">
+                <SearchPanel />
+              </div>
             </div>
             <SurpriseMe />
           </div>
@@ -48,6 +56,9 @@ export default function Layout({ children }: LayoutProps) {
           查看星群网络
         </Button>
       </footer>
+
+      {/* 分享感受入口（自定位） */}
+      <FeelingShareFab />
     </div>
   );
 }
