@@ -1,6 +1,6 @@
-import { getPersonById } from "../lib/catalog.ts";
-import { buildPersonaPrompt } from "../lib/persona.ts";
-import { json } from "../lib/http.ts";
+import { getPersonById } from "../lib/catalog.js";
+import { buildPersonaPrompt } from "../lib/persona.js";
+import { json } from "../lib/http.js";
 
 /**
  * GET /api/persona/:id — 返回人物的完整 persona prompt
@@ -15,11 +15,16 @@ import { json } from "../lib/http.ts";
 
 const ID_PATH = /^\/api\/persona\/([a-z0-9_]+)\/?$/;
 
-export default function handler(req: Request): Response {
-  if (req.method === "OPTIONS") return json(null, 204);
+/** CORS 预检 */
+export function OPTIONS(_req: Request): Response {
+  return json(null, 204);
+}
+
+export function GET(req: Request): Response {
   if (req.method !== "GET") return json({ error: "method_not_allowed" }, 405);
 
-  const m = ID_PATH.exec(new URL(req.url).pathname);
+  // base 兜底：Vercel 下 req.url 可能是相对路径（如 /api/persona/qiu_jin?id=qiu_jin）
+  const m = ID_PATH.exec(new URL(req.url, "http://localhost").pathname);
   if (!m) return json({ error: "invalid_path" }, 400);
 
   const person = getPersonById(decodeURIComponent(m[1]));

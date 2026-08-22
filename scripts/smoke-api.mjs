@@ -44,7 +44,7 @@ async function bundleModule(entry) {
 
 async function bundleAndLoad(entry) {
   const mod = await bundleModule(entry);
-  return mod.default;
+  return mod;
 }
 
 function postChat(body) {
@@ -65,9 +65,12 @@ function postSearch(body) {
 
 try {
   console.log("[1/4] 打包 api handlers…");
-  const persona = await bundleAndLoad("api/persona/[id].ts");
-  const chat = await bundleAndLoad("api/chat.ts");
-  const search = await bundleAndLoad("api/search.ts");
+  // Vercel 部署用命名方法导出（GET/POST/OPTIONS），此处按同样方式取用
+  const persona = (await bundleAndLoad("api/persona/[id].ts")).GET;
+  const chat = (await bundleAndLoad("api/chat.ts")).POST;
+  const searchMod = await bundleAndLoad("api/search.ts");
+  const search = searchMod.POST;
+  const searchOptions = searchMod.OPTIONS;
   const { loadCatalog } = await bundleModule("api/lib/catalog.ts");
 
   console.log("[2/4] persona 端点断言…");
@@ -194,7 +197,7 @@ try {
   res = await search(new Request("http://localhost/api/search"));
   check("GET search -> 405", res.status === 405);
 
-  res = await search(
+  res = await searchOptions(
     new Request("http://localhost/api/search", { method: "OPTIONS" })
   );
   check("OPTIONS search -> 204（CORS 预检）", res.status === 204);

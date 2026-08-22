@@ -1,6 +1,6 @@
-import type { Person } from "../../src/data/schema.ts";
-import { THEMES } from "../../data/themes.ts";
-import { buildDialogueRules } from "./guardrails.ts";
+import type { Person } from "../../src/data/schema.js";
+import { THEMES } from "../../data/themes.js";
+import { buildDialogueRules } from "./guardrails.js";
 
 /**
  * Persona prompt 模板（纯参数化，零 AI 调用）

@@ -4,8 +4,8 @@ import {
   runSearch,
   NotConfiguredError,
   ModelOutputError,
-} from "./lib/search-core.ts";
-import { json } from "./lib/http.ts";
+} from "./lib/search-core.js";
+import { json } from "./lib/http.js";
 
 /**
  * POST /api/search — RAG 检索 endpoint（「我想探索一个主题」）
@@ -25,8 +25,12 @@ const SearchRequestSchema = z.object({
   mode: z.enum(["auto", "deterministic", "llm"]).optional().default("auto"),
 });
 
-export default async function handler(req: Request): Promise<Response> {
-  if (req.method === "OPTIONS") return json(null, 204);
+/** CORS 预检（浏览器跨域 POST 前会先发 OPTIONS） */
+export function OPTIONS(_req: Request): Response {
+  return json(null, 204);
+}
+
+export async function POST(req: Request): Promise<Response> {
   if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
 
   let body: unknown;
