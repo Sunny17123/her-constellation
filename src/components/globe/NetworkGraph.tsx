@@ -814,5 +814,6 @@ function TagChip({
       )}
       {label}
     </button>
-  );
+  )
+  }
 }
