@@ -12,6 +12,7 @@ interface PersonResultCardProps {
 /**
  * 搜索结果卡片：点击 → selectPerson(person_id)
  * （SummaryCard 滑入、DeepLinkSync 写 /person/:id、相机聚焦均由既有契约免费获得）
+ * 只展示四个字段：姓名、出生年月、地理位置、议题匹配
  */
 export default function PersonResultCard({
   result,
@@ -35,38 +36,39 @@ export default function PersonResultCard({
         <ArrowUpRight className="h-4 w-4 text-muted-foreground shrink-0 mt-1" />
       </div>
 
-      {/* 时代 + 地域 */}
+      {/* 出生年月 · 地理位置 */}
       <div className="flex items-center gap-2 text-xs text-muted-foreground mt-2">
         <span>{result.time_period}</span>
         <span className="text-border">·</span>
         <span className="truncate">{result.region_zh}</span>
       </div>
 
-      {/* 议题徽章（与 SummaryCard 同款配色） */}
-      <div className="flex flex-wrap gap-1.5 mt-2">
-        {result.themes.map((t) => (
+      {/* 议题匹配（推荐回退时 matched_theme 为 null → 中性「为你推荐」徽章） */}
+      <div className="flex items-center gap-1.5 mt-2">
+        <span className="text-[10px] text-muted-foreground shrink-0">
+          议题匹配
+        </span>
+        {result.matched_theme ? (
           <Badge
-            key={t}
             variant="secondary"
             className="text-[10px] px-2 py-0"
             style={{
-              borderColor: getThemeColor(t),
-              color: getThemeColor(t),
-              backgroundColor: `${getThemeColor(t)}15`,
+              borderColor: getThemeColor(result.matched_theme),
+              color: getThemeColor(result.matched_theme),
+              backgroundColor: `${getThemeColor(result.matched_theme)}15`,
             }}
           >
-            {getThemeZh(t)}
+            {getThemeZh(result.matched_theme)}
           </Badge>
-        ))}
+        ) : (
+          <Badge
+            variant="secondary"
+            className="text-[10px] px-2 py-0 text-muted-foreground"
+          >
+            为你推荐
+          </Badge>
+        )}
       </div>
-
-      {/* 摘要一句 */}
-      <p className="text-xs leading-relaxed text-foreground/70 mt-3 line-clamp-2">
-        {result.snippet}
-      </p>
-
-      {/* 匹配理由 */}
-      <p className="text-xs text-secondary mt-2">{result.match_reason}</p>
     </button>
   );
 }

@@ -77,7 +77,7 @@ export default function SearchResults({
 
   return (
     <div className="rounded-xl border border-border/60 bg-card/95 backdrop-blur shadow-2xl shadow-black/40 p-2">
-      <ScrollArea className="max-h-[380px] pr-1">{content}</ScrollArea>
+      <ScrollArea className="max-h-[380px] pr-3">{content}</ScrollArea>
     </div>
   );
 }

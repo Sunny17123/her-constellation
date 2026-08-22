@@ -17,8 +17,9 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* 顶部导航 */}
-      <header className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6">
+      {/* 顶部导航：pointer-events-none 让 header 透明区域不拦截下方 fixed 元素点击，
+          交互子元素（搜索栏/下拉面板、SurpriseMe）各自 pointer-events-auto */}
+      <header className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 pointer-events-none">
         <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1">
               <div className="pointer-events-none">
@@ -34,7 +35,9 @@ export default function Layout({ children }: LayoutProps) {
                 <SearchPanel />
               </div>
             </div>
-            <SurpriseMe />
+            <div className="pointer-events-auto">
+              <SurpriseMe />
+            </div>
           </div>
       </header>
 
