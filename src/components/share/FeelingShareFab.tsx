@@ -68,9 +68,11 @@ export default function FeelingShareFab() {
 
   return (
     <>
-      {/* 入口：桌面右上按钮（DetailPanel 打开时会被其覆盖，可接受） */}
+      {/* 入口：桌面右上按钮（DetailPanel 打开时会被其覆盖，可接受）
+          必须位于 header 之下：header 含搜索栏高约 174px 且 z-50，
+          若按钮探入其盒内会被 header 拦截点击（可见但点不到） */}
       {!isMobile && (
-        <div className="fixed right-6 top-24 z-40">
+        <div className="fixed right-6 top-48 z-40">
           <Button
             variant="outline"
             size="sm"
