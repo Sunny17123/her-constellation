@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Person, Connection } from "@/data/schema";
-import { THEMES } from "../../data/themes";
+import { THEMES } from "../../../data/themes";
 import type { NodeImportance } from "./constellation-utils";
 
 /** 主题 → 图标映射（用 lucide 星群主题图标代替 emoji） */
