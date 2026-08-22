@@ -73,7 +73,7 @@ export default function SearchPanel() {
   );
 
   return (
-    <div className="flex flex-col items-start gap-2 w-full max-w-[400px]">
+    <div className="flex flex-col items-start gap-2 w-full max-w-[200px]">
       <p className="text-sm text-muted-foreground/70 tracking-wide">
         ✦ 我想探索一个主题
       </p>
