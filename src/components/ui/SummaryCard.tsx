@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, BookOpen } from "lucide-react";
+import { X, Sparkles, BookOpen, Star } from "lucide-react";
 import { useGlobeSelection } from "@/hooks/useGlobeSelection";
+import { useFavorites } from "@/hooks/useFavorites";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { getThemeColor } from "@/data/load";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +22,7 @@ interface SummaryCardProps {
 export default function SummaryCard({ onOpenDetail }: SummaryCardProps) {
   const isMobile = useMediaQuery("(max-width: 767px)");
   const { selectedId, selectPerson, allPeople, surpriseMe } = useGlobeSelection();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const person = selectedId
     ? allPeople.find((p) => p.id === selectedId) ?? null
@@ -36,6 +38,8 @@ export default function SummaryCard({ onOpenDetail }: SummaryCardProps) {
 
   if (!person) return null;
 
+  const favorite = isFavorite(person.id);
+
   const content = (
     <>
       {/* 名字 + 关闭 */}
@@ -47,6 +51,21 @@ export default function SummaryCard({ onOpenDetail }: SummaryCardProps) {
           <p className="text-sm text-muted-foreground">{person.name_en}</p>
         </div>
         <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => toggleFavorite(person.id)}
+            aria-label={favorite ? `取消收藏${person.name_zh}` : `收藏${person.name_zh}`}
+            aria-pressed={favorite}
+            title={favorite ? "取消收藏" : "收藏"}
+            className={`h-8 w-8 transition-colors ${
+              favorite
+                ? "text-primary hover:text-primary"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Star className="h-4 w-4" fill={favorite ? "currentColor" : "none"} />
+          </Button>
           <ShareButton variant="icon" />
           <Button
             variant="ghost"
